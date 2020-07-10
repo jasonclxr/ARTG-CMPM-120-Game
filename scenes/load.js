@@ -5,10 +5,8 @@ class load extends Phaser.Scene {
 
     preload() {
         this.load.atlas('platformer_atlas', './assets/kenny_sheet.png', './assets/kenny_sheet.json');
-        this.load.image('arrowKey', './assets/arrowKey.png');
-        this.load.image('talltrees', './assets/talltrees.png');
-        this.load.image('groundScroll', './assets/ground.png');
-        this.load.atlasXML('shooter_atlas', './assets/shooter_sheet.png', './assets/shooter_sheet.xml');
+        this.load.image('trees', './assets/talltrees.png');
+
         console.log("Assets all loaded up!");
     }
 

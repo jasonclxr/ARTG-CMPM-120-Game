@@ -16,7 +16,7 @@ class testScene extends Phaser.Scene {
         this.physics.world.gravity.y = 3000;
 
         this.add.image(this, 0, 0, 'trees')
-        this.add.text(game.config.width / 2, 30, 'No acceleration mode', { font: '30px Arial', fill: '#FFFFFF' }).setOrigin(0.5);
+        this.add.text(game.config.width / 2, 30, 'Sample level', { font: '30px Arial', fill: '#FFFFFF' }).setOrigin(0.5);
 
         console.log("testScene created");
         this.cameras.main.setBackgroundColor('#227B96');
@@ -30,7 +30,24 @@ class testScene extends Phaser.Scene {
             groundTile.body.allowGravity = false;
             this.ground.add(groundTile);
         }
-        this.alien = this.physics.add.sprite(game.config.width / 2, game.config.height / 2, 'platformer_atlas', 'front').setScale(SCALE);
+        for (let e = 0; e < 4; e++) {
+            for (let i = 0; i < 5; i++) {
+                let groundTile = this.physics.add.sprite(i * tileSize + 125 + 125 * Math.pow(-1, e), 650 - 100*e, 'platformer_atlas', 'block').setScale(SCALE).setOrigin(0);
+                groundTile.body.immovable = true;
+                groundTile.body.allowGravity = false;
+                this.ground.add(groundTile);
+            }
+        }
+        
+        for (let i = 0; i < 20; i++) {
+            let groundTile = this.physics.add.sprite(i * tileSize + 125, 200, 'platformer_atlas', 'block').setScale(SCALE).setOrigin(0);
+            groundTile.body.immovable = true;
+            groundTile.body.allowGravity = false;
+            this.ground.add(groundTile);
+        }
+
+
+        this.alien = this.physics.add.sprite(game.config.width / 10, game.config.height - tileSize*4, 'platformer_atlas', 'front').setScale(SCALE);
         this.alien.setMaxVelocity(this.MAX_X_VEL, this.MAX_Y_VEL);
         this.physics.add.collider(this.alien, this.ground);
         

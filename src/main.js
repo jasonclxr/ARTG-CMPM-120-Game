@@ -1,30 +1,26 @@
-let config = {
-    type: Phaser.CANVAS,
-    width: 640,
-    height: 480,
-    scene: [Menu, Play],
+'use strict';
+
+let cursors;
+let currentScene = 0;
+const SCALE = 0.5;
+const tileSize = 35;
+
+let gameConfig = {
+    type: Phaser.AUTO,
+    width: 800,
+    height: 800,
+    scene: [load, testScene],
+    title: "CMPM 120/ARTG120 Game",
+    physics: {
+        default: 'arcade',
+        arcade: {
+            debug: false,
+            gravity: {
+                x: 0,
+                y: 0
+            }
+        } 
+    }
 }
 
-let game = new Phaser.Game(config);
-
-let keyQ, keyLEFT, keyRIGHT, keyP;
-
-game.settings = {
-    spaceshipSpeed: 3,
-    gameTimer: 60000,
-    playTimer: 60000
-}
-
-let scoreConfig = {
-    fontFamily: 'Courier',
-    fontSize: '28px',
-    backgroundColor: '#F3B141',
-    color: '#843605',
-    align: 'left',
-    padding: {
-        top: 5,
-        bottom: 5,
-    },
-    fixedWidth: 125
-
-}
+let game = new Phaser.Game(gameConfig);

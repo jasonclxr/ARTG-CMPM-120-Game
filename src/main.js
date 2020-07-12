@@ -9,8 +9,8 @@ let gameConfig = {
     type: Phaser.AUTO,
     width: 800,
     height: 800,
-    scene: [load, testScene],
-    title: "CMPM 120/ARTG120 Game",
+    scene: [SampleScene],
+    title: "Time Swapping Game",
     physics: {
         default: 'arcade',
         arcade: {

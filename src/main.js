@@ -10,7 +10,7 @@ var gameConfig = {
     width: 800,
     height: 800,
     parent: 'game',
-    scene: [SampleScene],
+    scene: [WellLevel],
     physics: {
         default: "matter",
         matter: {

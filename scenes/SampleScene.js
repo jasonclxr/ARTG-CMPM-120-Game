@@ -10,7 +10,7 @@ class SampleScene extends Phaser.Scene {
 
     create() {
         this.cameras.main.setBackgroundColor('#227B96');
-        this.add.text(game.config.width / 2, 30, 'Sample State Machine', { font: '30px Arial', fill: '#FFFFFF' }).setOrigin(0.5);
+        this.add.text(game.config.width / 2, 30, 'Matter.js Physics + Ramp', { font: '30px Arial', fill: '#FFFFFF' }).setOrigin(0.5);
         this.keys = this.input.keyboard.createCursorKeys();
         this.anims.create({
             key: 'walk',

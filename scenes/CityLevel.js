@@ -1,17 +1,25 @@
-class WellLevel extends Phaser.Scene {
+class CityLevel extends Phaser.Scene {
     constructor () {
-        super('WellLevel');
+        super('CityLevel');
     }
 
     preload() {
+        this.load.image('background', './assets/backgroundtemp.png')
         this.load.atlas('platformer_atlas', './assets/kenny_sheet.png', './assets/kenny_sheet.json');
         console.log("Assets all loaded up!");
     }
 
     create() {
+        let presentBackground = this.add.image(0, 0, 'background').setOrigin(0, 0) ;
+        presentBackground.displayHeight = game.config.height/2
+        presentBackground.displayWidth = game.config.width*2
 
-        this.cameras.main.setBackgroundColor('#227B96');
-        this.add.text(game.config.width / 2, 30, 'Initial Well Level', { font: '30px Arial', fill: '#FFFFFF' }).setOrigin(0.5);
+        let futureBackground = this.add.image(0, game.config.height/2, 'background').setOrigin(0, 0) ;
+        futureBackground.displayHeight = game.config.height/2
+        futureBackground.displayWidth = game.config.width*2
+        futureBackground.alpha = 0.5;
+
+        this.add.text(game.config.width / 2, 30, 'Initial City Level', { font: '30px Arial', fill: '#FFFFFF' }).setOrigin(0.5);
         this.keys = this.input.keyboard.createCursorKeys();
         this.anims.create({
             key: 'walk',
@@ -46,16 +54,16 @@ class WellLevel extends Phaser.Scene {
         this.ground = this.add.group();
         for (let i = 0; i < game.config.width; i += tileSize) {
             let groundTile = this.matter.add.sprite(0, 0, 'platformer_atlas', 'block').setScale(SCALE)
-            groundTile.setPosition(i + groundTile.centerOfMass.x, game.config.height/2 - tileSize + groundTile.centerOfMass.y);  // position (0,280)
+            groundTile.setPosition(i + groundTile.centerOfMass.x + tileSize/2, game.config.height/2 + groundTile.centerOfMass.y);  // position (0,280)
             groundTile.setStatic(true);
             this.ground.add(groundTile);
         }
 
         for (let i = game.config.width/2; i < game.config.width; i += tileSize) {
             let groundTile = this.matter.add.sprite(0, 0, 'platformer_atlas', 'block').setScale(SCALE)
-            groundTile.setPosition(i*0.9 + groundTile.centerOfMass.x, game.config.width - i/2 + 190);  // position (0,280)
+            groundTile.setPosition(i*0.9 + groundTile.centerOfMass.x, game.config.width - i/2 - 210);  // position (0,280)
             groundTile.setStatic(true);
-            groundTile.setAngle(64)
+            groundTile.setAngle(61)
             this.ground.add(groundTile);
         }
         this.character = new Character(this, game.config.width / 10, game.config.height/2 - tileSize * 2, 'platformer_atlas', 'front', this.ground);

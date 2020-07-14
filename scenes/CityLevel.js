@@ -7,6 +7,10 @@ class CityLevel extends Phaser.Scene {
         this.load.image('background', './assets/backgroundtemp.png')
         this.load.image('emptywell', './assets/WellEmpty.png')
         this.load.image('fullwell', './assets/WellFull.png')
+
+        this.load.audio('gravelwet', './assets/gravel_steps_dry.mp3')
+        this.load.audio('splash', './assets/sploosh.mp3')
+
         this.load.atlas('platformer_atlas', './assets/kenny_sheet.png', './assets/kenny_sheet.json');
         this.load.atlas('coin_atlas', './assets/coin_sheet.png', './assets/coin_sheet.json');
         this.load.atlas('char_atlas', './assets/char_sheet.png', './assets/char_sheet.json');
@@ -81,10 +85,21 @@ class CityLevel extends Phaser.Scene {
             this.ground.add(groundTile);
         }
 
-        let emptyWell = this.matter.add.image(760, 350, 'emptywell').setScale(0.15)
-        emptyWell.setStatic(true);
-        let fullWell = this.matter.add.image(760, 750, 'fullwell').setScale(0.15)
-        fullWell.setStatic(true);
+        this.emptyWell = this.matter.add.image(760, 350, 'emptywell').setScale(0.15)
+        this.emptyWell.setStatic(true);
+        this.fullWell = this.matter.add.image(760, 750, 'fullwell').setScale(0.15)
+        this.fullWell.setStatic(true);
+
+        var soundConfig = {
+            mute: false,
+            volume: 1,
+            rate: 1,
+            detune: 0,
+            seek: 0,
+            loop: true,
+            delay: 0
+        }
+        this.walkingSound = this.sound.add('gravelwet', soundConfig);
 
         this.character = new Character(this, game.config.width / 10, game.config.height/2 - tileSize * 2, 'char_atlas', 'CharRight0', this.ground);
         this.character.setScale(0.2,0.2)
@@ -106,6 +121,11 @@ class CityLevel extends Phaser.Scene {
         setTimeout(function() {
             s.transition('idle');
         }, 1200)
+
+        this.character.setOnCollideWith(this.emptyWell, () => {
+            this.scene.start("WellScene");
+        })
+
     }
 
     update() {

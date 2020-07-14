@@ -5,6 +5,8 @@ class CityLevel extends Phaser.Scene {
 
     preload() {
         this.load.image('background', './assets/backgroundtemp.png')
+        this.load.image('emptywell', './assets/WellEmpty.png')
+        this.load.image('fullwell', './assets/WellFull.png')
         this.load.atlas('platformer_atlas', './assets/kenny_sheet.png', './assets/kenny_sheet.json');
         this.load.atlas('coin_atlas', './assets/coin_sheet.png', './assets/coin_sheet.json');
         this.load.atlas('char_atlas', './assets/char_sheet.png', './assets/char_sheet.json');
@@ -62,6 +64,15 @@ class CityLevel extends Phaser.Scene {
             this.ground.add(groundTile);
         }
 
+        this.ground = this.add.group();
+        for (let i = 0; i < game.config.width; i += tileSize) {
+            let groundTile = this.matter.add.sprite(0, 0, 'platformer_atlas', 'block').setScale(SCALE)
+            groundTile.setPosition(i + groundTile.centerOfMass.x + tileSize/2, game.config.height + groundTile.centerOfMass.y);  // position (0,280)
+            groundTile.setStatic(true);
+            this.ground.add(groundTile);
+            groundTile.setAlpha(0.65);
+        }
+
         for (let i = game.config.width/2; i < game.config.width; i += tileSize) {
             let groundTile = this.matter.add.sprite(0, 0, 'platformer_atlas', 'block').setScale(SCALE)
             groundTile.setPosition(i*0.9 + groundTile.centerOfMass.x, game.config.width - i/2 - 210);  // position (0,280)
@@ -69,6 +80,12 @@ class CityLevel extends Phaser.Scene {
             groundTile.setAngle(61)
             this.ground.add(groundTile);
         }
+
+        let emptyWell = this.matter.add.image(760, 350, 'emptywell').setScale(0.15)
+        emptyWell.setStatic(true);
+        let fullWell = this.matter.add.image(760, 750, 'fullwell').setScale(0.15)
+        fullWell.setStatic(true);
+
         this.character = new Character(this, game.config.width / 10, game.config.height/2 - tileSize * 2, 'char_atlas', 'CharRight0', this.ground);
         this.character.setScale(0.2,0.2)
         this.stateMachine = new StateMachine('time', {

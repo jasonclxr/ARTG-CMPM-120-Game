@@ -5,7 +5,6 @@ class SampleScene extends Phaser.Scene {
 
     preload() {
         this.load.atlas('platformer_atlas', './assets/kenny_sheet.png', './assets/kenny_sheet.json');
-
         console.log("Assets all loaded up!");
     }
 
@@ -13,7 +12,6 @@ class SampleScene extends Phaser.Scene {
         this.cameras.main.setBackgroundColor('#227B96');
         this.add.text(game.config.width / 2, 30, 'Sample State Machine', { font: '30px Arial', fill: '#FFFFFF' }).setOrigin(0.5);
         this.keys = this.input.keyboard.createCursorKeys();
-        this.physics.world.gravity.y = 3000;
         this.anims.create({
             key: 'walk',
             frames: this.anims.generateFrameNames('platformer_atlas', {
@@ -42,43 +40,44 @@ class SampleScene extends Phaser.Scene {
             ],
         });
 
+        this.matter.world.setBounds(0, 0, game.config.width, game.config.height);
+
         this.ground = this.add.group();
         for (let i = 0; i < game.config.width; i += tileSize) {
-            let groundTile = this.physics.add.sprite(i, game.config.height - tileSize, 'platformer_atlas', 'block').setScale(SCALE).setOrigin(0);
-            groundTile.body.immovable = true;
-            groundTile.body.allowGravity = false;
+            let groundTile = this.matter.add.sprite(0, 0, 'platformer_atlas', 'block').setScale(SCALE)
+            groundTile.setPosition(i + groundTile.centerOfMass.x, game.config.height - tileSize + groundTile.centerOfMass.y);  // position (0,280)
+            groundTile.setStatic(true);
+
             this.ground.add(groundTile);
         }
+
         for (let e = 0; e < 4; e++) {
             for (let i = 0; i < 5; i++) {
-                let groundTile = this.physics.add.sprite(i * tileSize + 125 + 125 * Math.pow(-1, e), 650 - 100 * e, 'platformer_atlas', 'block').setScale(SCALE).setOrigin(0);
-                groundTile.body.immovable = true;
-                groundTile.body.allowGravity = false;
+                let groundTile = this.matter.add.sprite(0, 0, 'platformer_atlas', 'block').setScale(SCALE)
+                groundTile.setPosition(i * tileSize + 125 + 125 * Math.pow(-1, e) + groundTile.centerOfMass.x, 650 - 100 * e + groundTile.centerOfMass.y);  // position (0,280)
+                groundTile.setStatic(true);
                 this.ground.add(groundTile);
             }
         }
-
+       
         for (let i = 0; i < 20; i++) {
-            let groundTile = this.physics.add.sprite(i * tileSize + 125, 200, 'platformer_atlas', 'block').setScale(SCALE).setOrigin(0);
-            groundTile.body.immovable = true;
-            groundTile.body.allowGravity = false;
+            let groundTile = this.matter.add.sprite(0, 0, 'platformer_atlas', 'block').setScale(SCALE);
+            groundTile.setPosition(i * tileSize + 125 + groundTile.centerOfMass.x, 200 + groundTile.centerOfMass.y);  // position (0,280)
+            groundTile.setStatic(true);
             this.ground.add(groundTile);
         }
-
+        
         this.character = new Character(this, game.config.width / 10, game.config.height - tileSize * 4, 'platformer_atlas', 'front', this.ground);
-
+        
         this.stateMachine = new StateMachine('idle', {
             idle: new IdleState(),
             move: new MoveState(),
             jump: new JumpState(),
         }, [this, this.character]);
 
-
     }
 
     update() {
         this.stateMachine.step();
-
     }
-
 }

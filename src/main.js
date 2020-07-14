@@ -5,22 +5,18 @@ let currentScene = 0;
 const SCALE = 0.5;
 const tileSize = 35;
 
-let gameConfig = {
+var gameConfig = {
     type: Phaser.AUTO,
     width: 800,
     height: 800,
+    parent: 'game',
     scene: [SampleScene],
-    title: "Time Swapping Game",
     physics: {
-        default: 'arcade',
-        arcade: {
-            debug: false,
-            gravity: {
-                x: 0,
-                y: 0
-            }
-        } 
+        default: "matter",
+        matter: {
+             debug: true
+        }
     }
-}
+};
 
 let game = new Phaser.Game(gameConfig);

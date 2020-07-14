@@ -6,6 +6,8 @@ class CityLevel extends Phaser.Scene {
     preload() {
         this.load.image('background', './assets/backgroundtemp.png')
         this.load.atlas('platformer_atlas', './assets/kenny_sheet.png', './assets/kenny_sheet.json');
+        this.load.atlas('coin_atlas', './assets/coin_sheet.png', './assets/coin_sheet.json');
+        this.load.atlas('char_atlas', './assets/char_sheet.png', './assets/char_sheet.json');
         console.log("Assets all loaded up!");
     }
 
@@ -18,26 +20,27 @@ class CityLevel extends Phaser.Scene {
         futureBackground.displayHeight = game.config.height/2
         futureBackground.displayWidth = game.config.width*2
         futureBackground.alpha = 0.5;
-
         this.add.text(game.config.width / 2, 30, 'Initial City Level', { font: '30px Arial', fill: '#FFFFFF' }).setOrigin(0.5);
         this.keys = this.input.keyboard.createCursorKeys();
+        
         this.anims.create({
             key: 'walk',
-            frames: this.anims.generateFrameNames('platformer_atlas', {
-                prefix: 'walk',
-                start: 1,
-                end: 11,
+            frames: this.anims.generateFrameNames('char_atlas', {
+                prefix: 'CharRight',
+                start: 0,
+                end: 1,
                 suffix: '',
-                zeroPad: 4
+                zeroPad: 1
             }),
-            frameRate: 30,
+            frameRate: 10,
             repeat: -1
         });
+        
         this.anims.create({
             key: 'idle',
-            defaultTextureKey: 'platformer_atlas',
+            defaultTextureKey: 'char_atlas',
             frames: [
-                { frame: 'front' }
+                { frame: 'CharRight0' }
             ],
             repeat: -1
         });
@@ -66,7 +69,8 @@ class CityLevel extends Phaser.Scene {
             groundTile.setAngle(61)
             this.ground.add(groundTile);
         }
-        this.character = new Character(this, game.config.width / 10, game.config.height/2 - tileSize * 2, 'platformer_atlas', 'front', this.ground);
+        this.character = new Character(this, game.config.width / 10, game.config.height/2 - tileSize * 2, 'char_atlas', 'CharRight0', this.ground);
+        this.character.setScale(0.2,0.2)
         this.stateMachine = new StateMachine('time', {
             idle: new IdleState(),
             move: new MoveState(),

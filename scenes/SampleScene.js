@@ -50,6 +50,15 @@ class SampleScene extends Phaser.Scene {
 
             this.ground.add(groundTile);
         }
+
+        for (let i = game.config.width/2; i < game.config.width; i += tileSize) {
+            let groundTile = this.matter.add.sprite(0, 0, 'platformer_atlas', 'block').setScale(SCALE)
+            groundTile.setPosition(i*0.9 + groundTile.centerOfMass.x, game.config.width - i/2 + 190);  // position (0,280)
+            groundTile.setStatic(true);
+            groundTile.setAngle(64)
+
+            this.ground.add(groundTile);
+        }
         
         this.character = new Character(this, game.config.width / 10, game.config.height - tileSize * 4, 'platformer_atlas', 'front', this.ground);
         

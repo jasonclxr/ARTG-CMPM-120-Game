@@ -1,3 +1,13 @@
+/*
+	Time Swapper Sprint 1
+    Created by Jason Blecman, Lauren Grubbs, 
+        Ethan Michaels for CMPM/ARTG 120 
+	Emails: jblecman@ucsc.edu, lgrubbs@ucsc.edu, esmichae@ucsc.edu
+	CruzIDs: jblecman, lgrubbs, esmichae
+
+	July 13th, 2020
+*/
+
 'use strict';
 
 let cursors;

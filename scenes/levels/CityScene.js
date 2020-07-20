@@ -33,7 +33,7 @@ class CityScene extends Phaser.Scene {
 
         for (let i = game.config.width/2; i < game.config.width; i += tileSize) {
             let groundTile = this.matter.add.sprite(0, 0, 'platformer_atlas', 'block').setScale(SCALE)
-            groundTile.setPosition(i*0.9 + groundTile.centerOfMass.x, game.config.width - i/2 - 210);  // position (0,280)
+            groundTile.setPosition(i*0.9 + groundTile.centerOfMass.x, game.config.height - i/2 - 210);  // position (0,280)
             groundTile.setStatic(true);
             groundTile.setAngle(61)
         }
@@ -52,6 +52,9 @@ class CityScene extends Phaser.Scene {
         this.Character.setOnCollideWith(this.emptyWell, () => {
             this.scene.start("WellScene");
         })
+
+        this.Coin = new Coin(this, 200, 200);
+
     }
 
     update() {

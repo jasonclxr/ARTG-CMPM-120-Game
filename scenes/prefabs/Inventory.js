@@ -1,6 +1,6 @@
 class Inventory {
     constructor() {
-        this.Equip = null;
+        this.Equip = 0;
         this.Inventory = {};
     }
 

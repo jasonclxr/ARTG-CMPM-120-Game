@@ -15,7 +15,6 @@ class Preload extends Phaser.Scene {
         this.load.atlas('platformer_atlas', './assets/sprites/kenny_sheet.png', './assets/sprites/kenny_sheet.json');
         this.load.atlas('coin_atlas', './assets/sprites/coin_sheet.png', './assets/sprites/coin_sheet.json');
         this.load.atlas('char_atlas', './assets/sprites/char_sheet.png', './assets/sprites/char_sheet.json');
-        
 
         console.log("Assets all loaded up!");
     }
@@ -50,6 +49,19 @@ class Preload extends Phaser.Scene {
             ],
         });
         this.scene.start("CityScene");
+
+        this.anims.create({
+            key: 'coinflip',
+            frames: this.anims.generateFrameNames('coin_atlas', {
+                prefix: 'Coin',
+                start: 10,
+                end: 20,
+                suffix: '',
+                zeroPad: 0
+            }),
+            frameRate: 25,
+            repeat: -1
+        });
     }
 
 }

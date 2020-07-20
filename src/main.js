@@ -14,13 +14,21 @@ let cursors;
 let currentScene = 0;
 const SCALE = 0.5;
 const tileSize = 35;
+let inventory = new Inventory();
+inventory.addItem("Test item!", 5)
+inventory.addItem("Test item2!", 5)
+inventory.addItem("Test item3!", 5)
+
+inventory.removeItem("Test item3!", 6)
+
+inventory.printInventory();
 
 var gameConfig = {
     type: Phaser.AUTO,
     width: 800,
     height: 800,
     parent: 'game',
-    scene: [CityLevel, WellScene],
+    scene: [Preload, CityScene, WellScene],
     physics: {
         default: "matter",
         matter: {

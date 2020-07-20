@@ -3,13 +3,11 @@ class TimeTravelState extends State {
         character.setVelocityX(0);
         character.setAngularVelocity(0,0)
         character.anims.play('idle');
-        scene.walkingSound.stop()
+        character.WalkingSound.stop()
         //play animation
     }
 
-    execute(scene, character) {
-
-    }
+    execute(scene, character) {}
 }
 
 class IdleState extends State {
@@ -17,7 +15,7 @@ class IdleState extends State {
         character.setVelocityX(0);
         character.setAngularVelocity(0,0)
         character.anims.play('idle');
-        scene.walkingSound.stop()
+        character.WalkingSound.stop()
     }
 
     execute(scene, character) {
@@ -35,7 +33,7 @@ class IdleState extends State {
 
 class MoveState extends State {
     enter(scene, character) {
-        scene.walkingSound.play()
+        character.WalkingSound.play()
     }
 
     execute(scene, character) {

@@ -27,7 +27,7 @@ class IdleState extends State {
         if (left.isDown || right.isDown) {
             scene.stateMachine.transition('move');
         }
-        if (character.onGround == true && Phaser.Input.Keyboard.JustDown(up)) {
+        if (character.JUMPING == false && Phaser.Input.Keyboard.JustDown(up)) {
             scene.stateMachine.transition('jump');
         }
         if (Phaser.Input.Keyboard.JustDown(space) && inventory.has("Coin")) {
@@ -57,7 +57,7 @@ class MoveState extends State {
             scene.stateMachine.transition('idle');
         }
 
-        if (character.onGround == true && Phaser.Input.Keyboard.JustDown(up)) {
+        if (character.JUMPING == false && Phaser.Input.Keyboard.JustDown(up)) {
             scene.stateMachine.transition('jump');
         }
         if (Phaser.Input.Keyboard.JustDown(space) && inventory.has("Coin")) {
@@ -69,7 +69,7 @@ class MoveState extends State {
 class JumpState extends State {
     enter(scene, character) {
         console.log("jumping");
-        character.onGround = false;
+        character.JUMPING = true;
         character.setVelocityY(character.JUMP_VELOCITY);
     }
 

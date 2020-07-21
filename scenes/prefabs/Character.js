@@ -3,7 +3,9 @@ class Character extends Phaser.Physics.Matter.Sprite {
         super(scene.matter.world, spawnX, spawnY, 'char_atlas', 'CharRight0');
 
         this.VELOCITY = 4;
-        this.JUMP_VELOCITY = 4;
+        this.JUMP_VELOCITY = -10;
+        this.JUMPING = false;
+
         scene.add.existing(this);
         scene.keys = scene.input.keyboard.createCursorKeys();
         scene.stateMachine = new StateMachine('time', {
@@ -24,5 +26,9 @@ class Character extends Phaser.Physics.Matter.Sprite {
         }
         this.WalkingSound = scene.sound.add('gravelwet', soundConfig);
         this.setScale(0.15, 0.15)
+
+        this.setOnCollide(() => {
+            this.JUMPING = false;
+        })
     }
 }

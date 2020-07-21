@@ -24,9 +24,17 @@ class DamnScene_Present extends Phaser.Scene {
         crank_3_broken.setScale(0.04)
         crank_3_broken.setInteractive({ cursor: 'url(./assets/pngs/WellFull.png), pointer' });
 
-        crank_3_broken.on('pointerdown', () => {{
-            
-        }
+        crank_3_broken.on('pointerdown', () => {
+            if (inventory.has('Crank') && Math.abs(crank_3.x - this.Character.x) <= 70) {
+                crank_3_broken.visible = false;
+                let crank_3 = new Crank(this, 450, 325)
+                crank_3.on('pointerdown', () => {
+                    if (Math.abs(crank_3.x - this.Character.x) <= 70) {
+                        water2.visible = true;
+                    }
+                })
+            }
+        })
 
         let pile = new Pile(this, 700, 380);
         let crack = this.add.image(600, 450, 'bigCrack').setScale(0.05);

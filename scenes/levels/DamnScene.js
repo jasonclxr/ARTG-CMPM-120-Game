@@ -10,17 +10,29 @@ class DamnScene extends Phaser.Scene {
 
         Fade(this, "In")
 
-       // let water1 = new DamWater(this, 350, 630);
-        //let water2 = new DamWater(this, 590, 630);
-       // let water3 = new DamWater(this, 830, 630);
+        let water1 = new DamWater(this, 350, 630);
+        water1.visible = false;
+        let water2 = new DamWater(this, 590, 630);
+        water2.visible = false;
+        let water3 = new DamWater(this, 830, 630);
+        water3.visible = false;
         let ladder = new Ladder(this, 250, 225)
-        let screwdriver = new Screwdriver(this, 100, 397)
         let crank_1 = new Crank(this, 100, 465)
         let crank_2 = new Crank(this, 950, 165)
+        let crank_3 = new Crank(this, 450, 325)
         crank_1.setInteractive();
         crank_2.setInteractive();
-        let crank_3_broken = this.add.image(450, 325, 'crankBase')
-        crank_3_broken.setScale(0.04)
+        crank_3.setInteractive();
+
+        crank_3.on('pointerdown', () => {
+            if (Math.abs(crank_3.x - this.Character.x) <= 70) {
+                if (inventory.has('Screwdriver')) {
+                    inventory.add('Crank');
+                    crank_3.destroy();
+                }
+            }
+        })
+
         let pile = new Pile(this, 700, 380);
         let crack = new Crack(this, 600, 450);
         let floodWater = new FloodWater(this, game.config.width/2, 750)
@@ -47,16 +59,12 @@ class DamnScene extends Phaser.Scene {
         let oil = new Oil(this, 175, 500)
         crank_1.on('pointerdown', () => {
             if (Math.abs(crank_1.x - this.Character.x) <= 70) {
-                if (inventory.has('oil')) {
-                    water_1.destroy()
+                if (inventory.has('Oil')) {
+                    water1.visible = true;
                 } else {
                     console.log("you need oil!")
                 }
             }
-        })
-
-        crank_2.on('pointerdown', () => {
-
         })
 
         let line1 = new Line(this, 520, 94)

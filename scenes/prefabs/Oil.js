@@ -5,6 +5,8 @@ class Oil extends Phaser.Physics.Matter.Image {
         this.setStatic(true);
         scene.add.existing(this);
 
+        this.setInteractive({ cursor: 'url(./assets/pngs/WellFull.png), pointer' });
+
         this.on('pointerdown', () => {
             if (Math.abs(this.x - scene.Character.x) <= 70) {
                 console.log("Obtained oil");

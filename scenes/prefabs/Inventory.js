@@ -1,6 +1,6 @@
 class Inventory {
     constructor() {
-        this.Equip = 0;
+        this.Equip = "null";
         this.Inventory = {};
     }
 
@@ -8,7 +8,7 @@ class Inventory {
 
     }
 
-    addItem(name, count) {
+    add(name, count) {
         if (this.Inventory[name] != null) {
             this.Inventory[name].Count++;
         } else {
@@ -17,14 +17,20 @@ class Inventory {
                 Count: count
             }
         }
+        if (this.Equip == "null") {
+            this.Equip = name;
+        }
     }
 
-    removeItem(name, count) {
+    remove(name, count) {
         if (this.Inventory[name] != null) {
             if (count >= this.Inventory[name].Count) {
                 delete this.Inventory[name];
             } else {
                 this.Inventory[name].Count -= count;
+            }
+            if (this.Equip == name) {
+                this.Equip = "null";
             }
         }
     }
@@ -33,5 +39,12 @@ class Inventory {
         for (let j in this.Inventory) {
             console.log(j, this.Inventory[j].Count);
         }
+    }
+
+    has(name) {
+        if (this.Inventory[name] != null) {
+            return true;
+        }
+        return false;
     }
 }

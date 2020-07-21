@@ -41,6 +41,7 @@ class Preload extends Phaser.Scene {
             ],
             repeat: -1
         });
+
         this.anims.create({
             key: 'jump',
             defaultTextureKey: 'platformer_atlas',
@@ -60,7 +61,7 @@ class Preload extends Phaser.Scene {
                 zeroPad: 0
             }),
             frameRate: 25,
-            repeat: -1
+            repeat: 3
         });
     }
 

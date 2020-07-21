@@ -14,7 +14,7 @@ let cursors;
 let currentScene = 0;
 const SCALE = 0.5;
 const tileSize = 35;
-let inventory = new Inventory();
+const inventory = new Inventory();
 
 var gameConfig = {
     type: Phaser.AUTO,

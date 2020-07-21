@@ -2,7 +2,6 @@ class CityScene extends Phaser.Scene {
     constructor () {
         super('CityScene');
     }
-
     create() {
         let presentBackground = this.add.image(0, 0, 'background').setOrigin(0, 0) ;
         presentBackground.displayHeight = game.config.height/2
@@ -33,7 +32,7 @@ class CityScene extends Phaser.Scene {
 
         for (let i = game.config.width/2; i < game.config.width; i += tileSize) {
             let groundTile = this.matter.add.sprite(0, 0, 'platformer_atlas', 'block').setScale(SCALE)
-            groundTile.setPosition(i*0.9 + groundTile.centerOfMass.x, game.config.height - i/2 - 210);  // position (0,280)
+            groundTile.setPosition(i*0.9 + groundTile.centerOfMass.x - 200, game.config.height - i/2 - 100);  // position (0,280)
             groundTile.setStatic(true);
             groundTile.setAngle(61)
         }
@@ -45,16 +44,20 @@ class CityScene extends Phaser.Scene {
 
         this.Character = new Character(this, game.config.width / 10, game.config.height/2 - tileSize * 2);
         Fade(this, "In")
-        let s = this.stateMachine
+        
+        let thiss = this
         setTimeout(function() {
-            s.transition('idle');
+            thiss.stateMachine.transition('idle');
         }, 1200)
+
         this.Character.setOnCollideWith(this.emptyWell, () => {
+            this.Character.WalkingSound.stop()
             this.scene.start("WellScene");
         })
 
-        this.Coin = new Coin(this, 200, 200);
-
+        this.timeTravel = () => {
+            console.log("cannot time travel here");
+        }
     }
 
     update() {

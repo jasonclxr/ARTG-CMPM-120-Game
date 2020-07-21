@@ -1,14 +1,13 @@
-class Coin extends Phaser.GameObjects.Sprite {
+class Coin extends Phaser.Physics.Matter.Sprite {
     constructor(scene, x, y) {
-        super(scene, x, y, 'coin_atlas', 'Coin10');
-        this.setScale(SCALE)/2;
+        super(scene.matter.world, x, y, 'coin_atlas', 'Coin10');
+        this.setScale(SCALE/6);
         scene.add.existing(this);
-
-        this.anims.play('coinflip');
-
     }
 
     flip() {
-        
+        this.anims.play('coinflip');
     }
+
+
 }

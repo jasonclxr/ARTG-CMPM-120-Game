@@ -7,7 +7,9 @@ class TimeTravelState extends State {
         //play animation
     }
 
-    execute(scene, character) {}
+    execute(scene, character) {
+        character.WalkingSound.stop()
+    }
 }
 
 class IdleState extends State {
@@ -19,7 +21,7 @@ class IdleState extends State {
     }
 
     execute(scene, character) {
-        const { left, right, up } = scene.keys;
+        const { left, right, up, down, space } = scene.keys;
         character.setVelocityX(0);
         character.setAngularVelocity(0,0)
         if (left.isDown || right.isDown) {
@@ -27,6 +29,9 @@ class IdleState extends State {
         }
         if (character.onGround == true && Phaser.Input.Keyboard.JustDown(up)) {
             scene.stateMachine.transition('jump');
+        }
+        if (Phaser.Input.Keyboard.JustDown(space) && inventory.has("Coin")) {
+            scene.timeTravel();
         }
     }
 }
@@ -37,7 +42,7 @@ class MoveState extends State {
     }
 
     execute(scene, character) {
-        const { left, right, up, down} = scene.keys;
+        const { left, right, up, down, space} = scene.keys;
         if (left.isDown) {
             character.setVelocityX(-character.VELOCITY);
             character.setAngularVelocity(0,0)
@@ -54,6 +59,9 @@ class MoveState extends State {
 
         if (character.onGround == true && Phaser.Input.Keyboard.JustDown(up)) {
             scene.stateMachine.transition('jump');
+        }
+        if (Phaser.Input.Keyboard.JustDown(space) && inventory.has("Coin")) {
+            scene.timeTravel();
         }
     }
 }

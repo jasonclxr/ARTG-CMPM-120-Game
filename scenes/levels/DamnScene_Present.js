@@ -15,7 +15,10 @@ class DamnScene_Present extends Phaser.Scene {
         let water3 = new DamWater(this, 830, 630);
         water3.visible = false;
         let ladder = new Ladder(this, 250, 225)
-        let screwdriver = new Screwdriver(this, 100, 397)
+        if (inventory.has("Screwdriver")) {
+            let screwdriver = new Screwdriver(this, 100, 397)
+        }
+        
         let crank_1 = new Crank(this, 100, 465)
         let crank_2 = new Crank(this, 950, 165)
         crank_1.setInteractive({ cursor: 'url(./assets/pngs/WellFull.png), pointer' });
@@ -28,6 +31,7 @@ class DamnScene_Present extends Phaser.Scene {
             if (inventory.has('Crank') && Math.abs(crank_3_broken.x - this.Character.x) <= 70) {
                 crank_3_broken.visible = false;
                 let crank_3 = new Crank(this, 450, 325)
+                crank_3.setInteractive({ cursor: 'url(./assets/pngs/WellFull.png), pointer' });
                 crank_3.on('pointerdown', () => {
                     if (Math.abs(crank_3.x - this.Character.x) <= 70) {
                         water2.visible = true;

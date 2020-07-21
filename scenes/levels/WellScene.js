@@ -39,6 +39,7 @@ class WellScene extends Phaser.Scene {
 
         this.timeTravel = () => {
             console.log("time travel time");
+            this.Character.WalkingSound.stop();
             this.scene.start("CityScene");
         }
     }

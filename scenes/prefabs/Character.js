@@ -27,7 +27,7 @@ class Character extends Phaser.Physics.Matter.Sprite {
         this.WalkingSound = scene.sound.add('gravelwet', soundConfig);
         this.setScale(0.15, 0.15)
 
-        this.setOnCollide(() => {
+        this.setOnCollideActive(() => {
             this.JUMPING = false;
         })
     }

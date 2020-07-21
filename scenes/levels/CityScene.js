@@ -12,27 +12,25 @@ class CityScene extends Phaser.Scene {
         futureBackground.displayWidth = game.config.width*2
         futureBackground.alpha = 0.5;
         this.add.text(game.config.width / 2, 30, 'Initial City Level', { font: '30px Arial', fill: '#FFFFFF' }).setOrigin(0.5);
-        this.keys = this.input.keyboard.createCursorKeys();
-
         this.matter.world.setBounds(0, 0, game.config.width, game.config.height);
 
         this.ground = this.add.group();
         for (let i = 0; i < game.config.width; i += tileSize) {
             let groundTile = this.matter.add.sprite(0, 0, 'platformer_atlas', 'block').setScale(SCALE)
-            groundTile.setPosition(i + groundTile.centerOfMass.x + tileSize/2, game.config.height/2 + groundTile.centerOfMass.y);  // position (0,280)
+            groundTile.setPosition(i + groundTile.centerOfMass.x + tileSize/2, game.config.height/2 + groundTile.centerOfMass.y);
             groundTile.setStatic(true);
         }
 
         for (let i = 0; i < game.config.width; i += tileSize) {
             let groundTile = this.matter.add.sprite(0, 0, 'platformer_atlas', 'block').setScale(SCALE)
-            groundTile.setPosition(i + groundTile.centerOfMass.x + tileSize/2, game.config.height + groundTile.centerOfMass.y);  // position (0,280)
+            groundTile.setPosition(i + groundTile.centerOfMass.x + tileSize/2, game.config.height + groundTile.centerOfMass.y); 
             groundTile.setStatic(true);
             groundTile.setAlpha(0.65);
         }
 
         for (let i = game.config.width/2; i < game.config.width; i += tileSize) {
             let groundTile = this.matter.add.sprite(0, 0, 'platformer_atlas', 'block').setScale(SCALE)
-            groundTile.setPosition(i*0.9 + groundTile.centerOfMass.x - 200, game.config.height - i/2 - 100);  // position (0,280)
+            groundTile.setPosition(i*0.9 + groundTile.centerOfMass.x - 200, game.config.height - i/2 - 100);
             groundTile.setStatic(true);
             groundTile.setAngle(61)
         }
@@ -48,7 +46,7 @@ class CityScene extends Phaser.Scene {
         let thiss = this
         setTimeout(function() {
             thiss.stateMachine.transition('idle');
-        }, 1200)
+        }, 800)
 
         this.Character.setOnCollideWith(this.emptyWell, () => {
             this.Character.WalkingSound.stop()

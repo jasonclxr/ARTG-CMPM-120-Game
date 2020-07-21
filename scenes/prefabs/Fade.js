@@ -17,6 +17,4 @@ function Fade(scene, inorout) {
             }, i * 10)
         } 
     }
-
-    
 }

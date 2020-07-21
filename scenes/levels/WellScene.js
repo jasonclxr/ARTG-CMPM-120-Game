@@ -20,22 +20,13 @@ class WellScene extends Phaser.Scene {
             thiss.stateMachine.transition('idle');
         }, 1200)
 
-        this.Coin = new Coin(this, game.config.width / 2, game.config.height - 30);
+        if (!inventory.has("Coin")) {
+            this.Coin = new Coin(this, game.config.width / 2, game.config.height - 30);
 
-        this.Character.setOnCollideWith(this.Coin, () => {
-            console.log("touched coin");
-        })
-
-        this.Coin.setInteractive();
-
-        this.Coin.on('pointerdown', () => {
-            console.log(Math.abs(this.Coin.x - this.Character.x))
-            if (Math.abs(this.Coin.x - this.Character.x) <= 60) {
-                console.log("Obtained coin");
-                inventory.add("Coin", 1)
-                this.Coin.destroy();
-            }
-        })
+            this.Character.setOnCollideWith(this.Coin, () => {
+                console.log("touched coin");
+            })
+        }
 
         this.timeTravel = () => {
             console.log("time travel time");

@@ -26,8 +26,11 @@ class WellScene extends Phaser.Scene {
             this.Character.setOnCollideWith(this.Coin, () => {
                 console.log("touched coin");
             })
-        }
 
+
+            this.Rope = new Rope(this, game.config.width/2, 700);
+        }
+        
         this.timeTravel = () => {
             console.log("time travel time");
             this.Character.WalkingSound.stop();

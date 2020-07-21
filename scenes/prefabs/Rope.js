@@ -1,21 +1,17 @@
-class Coin extends Phaser.Physics.Matter.Sprite {
+class Rope extends Phaser.Physics.Matter.Image {
     constructor(scene, x, y) {
-        super(scene.matter.world, x, y, 'coin_atlas', 'Coin10');
-        this.setScale(SCALE/6);
+        super(scene.matter.world, x, y, 'rope');
+        this.setScale(0.04);
         scene.add.existing(this);
 
         this.setInteractive({ cursor: 'url(./assets/pngs/WellFull.png), pointer'});
-
+        
         this.on('pointerdown', () => {
             if (Math.abs(this.x - scene.Character.x) <= 70) {
-                console.log("Obtained coin");
-                inventory.add("Coin", 1)
+                console.log("Obtained rope");
+                inventory.add("Rope", 1)
                 this.destroy();
             }
         })
-    }
-
-    flip() {
-        this.anims.play('coinflip');
     }
 }

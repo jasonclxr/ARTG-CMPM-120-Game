@@ -27,20 +27,29 @@ class CityScene extends Phaser.Scene {
             groundTile.setStatic(true);
             groundTile.setAlpha(0.65);
         }
-
-        for (let i = game.config.width/2; i < game.config.width; i += tileSize) {
-            let groundTile = this.matter.add.sprite(0, 0, 'platformer_atlas', 'block').setScale(SCALE)
-            groundTile.setPosition(i*0.9 + groundTile.centerOfMass.x - 200, game.config.height - i/2 - 100);
-            groundTile.setStatic(true);
-            groundTile.setAngle(61)
+        if (!inventory.has("Bucket")) {
+            let bucket = new Bucket(this, 700, 358)
         }
+        
 
         this.emptyWell = this.matter.add.image(760, 350, 'emptywell').setScale(0.15)
         this.emptyWell.setStatic(true);
         this.fullWell = this.matter.add.image(760, 750, 'fullwell').setScale(0.15)
         this.fullWell.setStatic(true);
 
-        this.Character = new Character(this, game.config.width / 10, game.config.height/2 - tileSize * 2);
+        this.ConstructionSign = new LeftSign(this, 40, 760);
+
+        if (inventory.has("Coin")) {
+            this.Character = new Character(this, 1000, 700);
+            this.Character.setOnCollideWith(this.ConstructionSign, () => {
+                this.Character.WalkingSound.stop()
+                prevX = 1170
+                prevY = 500
+                this.scene.start("DamnScene");
+            })
+        } else {
+            this.Character = new Character(this, game.config.width / 10, game.config.height / 2 - tileSize * 2);
+        }
         Fade(this, "In")
         
         let thiss = this

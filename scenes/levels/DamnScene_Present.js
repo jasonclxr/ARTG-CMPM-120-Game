@@ -15,7 +15,7 @@ class DamnScene_Present extends Phaser.Scene {
         let water3 = new DamWater(this, 830, 630);
         water3.visible = false;
         let ladder = new Ladder(this, 250, 225)
-        if (inventory.has("Screwdriver")) {
+        if (!inventory.has("Screwdriver")) {
             let screwdriver = new Screwdriver(this, 100, 397)
         }
         

@@ -30,5 +30,9 @@ class Character extends Phaser.Physics.Matter.Sprite {
         this.setOnCollideActive(() => {
             this.JUMPING = false;
         })
+
+        this.setOnCollideEnd(() => {
+            this.JUMPING = true;
+        })
     }
 }

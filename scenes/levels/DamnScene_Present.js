@@ -50,7 +50,7 @@ class DamnScene_Present extends Phaser.Scene {
         crank_3_broken.on('pointerdown', () => {
             if (inventory.has('Crank') && Math.abs(crank_3_broken.x - this.Character.x) <= obtainLength) {
                 crank_3_broken.visible = false;
-                let crank_3 = new Crank(this, 450, 325)
+                let crank_3 = new Crank(this, 450, 300)
                 crank_3.setInteractive({ cursor: 'url(./assets/pngs/WellFull.png), pointer' });
                 crank_3.on('pointerdown', () => {
                     if (Math.abs(crank_3.x - this.Character.x) <= obtainLength) {

@@ -85,7 +85,7 @@ class Preload extends Phaser.Scene {
             repeat: 3
         });
         
-        this.scene.start("DamnScene_Present");
+        this.scene.start("CityScene");
     }
 
 }

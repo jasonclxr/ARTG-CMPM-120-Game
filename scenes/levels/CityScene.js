@@ -28,7 +28,7 @@ class CityScene extends Phaser.Scene {
             groundTile.setAlpha(0.65);
         }
         if (!inventory.has("Bucket")) {
-            let bucket = new Bucket(this, 700, 358)
+            let bucket = new Bucket(this, 300, 358)
         }
         
 

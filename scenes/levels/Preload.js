@@ -83,9 +83,6 @@ class Preload extends Phaser.Scene {
             frameRate: 25,
             repeat: 3
         });
-
-
-
         
         this.scene.start("CityScene");
     }

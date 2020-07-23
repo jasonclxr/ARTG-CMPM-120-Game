@@ -15,20 +15,39 @@ class DamnScene_Present extends Phaser.Scene {
         let water3 = new DamWater(this, 830, 630);
         water3.visible = pipe3;
         let ladder = new Ladder(this, 250, 225)
+        ladder.setInteractive({ cursor: 'url(./assets/pngs/WellFull.png), pointer' });
+        ladder.on('pointerdown', () => {
+            if (Math.abs(ladder.x - this.Character.x) <= obtainLength*2) {
+                if (inventory.has('Rope')) {
+                    let ropeLadder = new RopeLadder(this, ladder.x, ladder.y + 50)
+                    ropeLadder.setInteractive({ cursor: 'url(./assets/pngs/WellFull.png), pointer' });
+                    ropeLadder.on('pointerdown', () => {
+                        console.log("climbing, insert animation later")
+                        this.Character.setPosition(ropeLadder.x + 70, ropeLadder.y-100);
+                    })
+                    ladder.destroy()
+                } else {
+                    console.log("you need rope!");
+                }
+            }
+        })
+
+
         if (!inventory.has("Screwdriver")) {
             let screwdriver = new Screwdriver(this, 100, 397)
         }
         
         let crank_1 = new Crank(this, 100, 465)
         let crank_2 = new Crank(this, 950, 165)
+        let crank_3_broken = this.add.image(450, 325, 'crankBase')
         crank_1.setInteractive({ cursor: 'url(./assets/pngs/WellFull.png), pointer' });
         crank_2.setInteractive({ cursor: 'url(./assets/pngs/WellFull.png), pointer' });
-        let crank_3_broken = this.add.image(450, 325, 'crankBase')
+        
         crank_3_broken.setScale(0.04)
         crank_3_broken.setInteractive({ cursor: 'url(./assets/pngs/WellFull.png), pointer' });
 
         crank_3_broken.on('pointerdown', () => {
-            if (inventory.has('Crank') && Math.abs(crank_3_broken.x - this.Character.x) <= 70) {
+            if (inventory.has('Crank') && Math.abs(crank_3_broken.x - this.Character.x) <= obtainLength) {
                 crank_3_broken.visible = false;
                 let crank_3 = new Crank(this, 450, 325)
                 crank_3.setInteractive({ cursor: 'url(./assets/pngs/WellFull.png), pointer' });
@@ -77,7 +96,10 @@ class DamnScene_Present extends Phaser.Scene {
         })
 
         crank_2.on('pointerdown', () => {
-
+            if (Math.abs(crank_2.x - this.Character.x) <= obtainLength) {
+                water3.visible = true;
+                pipe3 = true;
+            }
         })
 
         let line1 = new Line(this, 520, 94)

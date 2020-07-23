@@ -30,6 +30,7 @@ class Preload extends Phaser.Scene {
         this.load.image('floodWater', './assets/pngs/FloodWater.png')
         this.load.image('bucket', './assets/pngs/bucket.png')
         this.load.image('line', './assets/pngs/Line.png')
+        this.load.image('bigTree', './assets/pngs/Tree.png')
 
         this.load.audio('gravelwet', './assets/sounds/gravel_steps_dry.mp3')
         this.load.audio('splash', './assets/sounds/sploosh.mp3')
@@ -85,7 +86,7 @@ class Preload extends Phaser.Scene {
             repeat: 3
         });
         
-        this.scene.start("CityScene");
+        this.scene.start("CityLevel");
     }
 
 }

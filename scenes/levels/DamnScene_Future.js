@@ -42,10 +42,14 @@ class DamnScene_Future extends Phaser.Scene {
         let water4 = new DamWater(this, 630, 530);
         water4.setScale(0.15)
 
-        let constructionSign = new ConstructionSign(this, 1100, 560);
+        
         let sapling = new Sapling(this, 1000, 560);
         if (treeBig == true) {
-            sapling.setScale(0.05);
+            let tree = new BigTree(this, sapling.x, sapling.y - 50)
+            sapling.destroy()
+            let constructionSign = new SolidConstructionSign(this, 1100, 560);
+        } else {
+            let constructionSign = new ConstructionSign(this, 1100, 560);
         }
         this.timeTravel = () => {
             console.log("time travel time");

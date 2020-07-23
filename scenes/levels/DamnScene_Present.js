@@ -6,7 +6,7 @@ class DamnScene_Present extends Phaser.Scene {
         let background = this.add.image(0, 0, 'damScenePresent').setOrigin(0, 0);
         background.displayHeight = game.config.height
         background.displayWidth = game.config.width
-        this.matter.world.setBounds(0, 0, game.config.width, 525);
+        this.matter.world.setBounds(0, 0, game.config.width, 575);
         Fade(this, "In")
         let water1 = new DamWater(this, 120, 730);
         water1.visible = pipe1;

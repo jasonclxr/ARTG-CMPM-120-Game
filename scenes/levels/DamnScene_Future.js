@@ -1,6 +1,6 @@
-class DamnScene extends Phaser.Scene {
+class DamnScene_Future extends Phaser.Scene {
     constructor () {
-        super('DamnScene');
+        super('DamnScene_Future');
     }
     create() {
         let background = this.add.image(0, 0, 'damScene').setOrigin(0, 0);
@@ -25,7 +25,7 @@ class DamnScene extends Phaser.Scene {
         crank_3.setInteractive();
 
         crank_3.on('pointerdown', () => {
-            if (Math.abs(crank_3.x - this.Character.x) <= 70) {
+            if (Math.abs(crank_3.x - this.Character.x) <= obtainLength) {
                 if (inventory.has('Screwdriver')) {
                     inventory.add('Crank');
                     crank_3.destroy();
@@ -33,7 +33,6 @@ class DamnScene extends Phaser.Scene {
             }
         })
 
-        let pile = new Pile(this, 700, 380);
         let crack = new Crack(this, 600, 450);
         let floodWater = new FloodWater(this, game.config.width/2, 750)
 
@@ -56,9 +55,15 @@ class DamnScene extends Phaser.Scene {
             prevY = this.Character.y;
             this.scene.start("DamnScene_Present");
         }
-        let oil = new Oil(this, 175, 500)
+
+        if (!inventory.has('Oil')) {
+            let oil = new Oil(this, 175, 500)
+        }
+        
+
+
         crank_1.on('pointerdown', () => {
-            if (Math.abs(crank_1.x - this.Character.x) <= 70) {
+            if (Math.abs(crank_1.x - this.Character.x) <= obtainLength) {
                 if (inventory.has('Oil')) {
                     water1.visible = true;
                 } else {

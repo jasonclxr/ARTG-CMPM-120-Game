@@ -54,11 +54,11 @@ class DamnScene_Present extends Phaser.Scene {
             this.Character.WalkingSound.stop();
             prevX = this.Character.x;
             prevY = this.Character.y;
-            this.scene.start("DamnScene");
+            this.scene.start("DamnScene_Future");
         }
 
         crank_1.on('pointerdown', () => {
-            if (Math.abs(crank_1.x - this.Character.x) <= 70) {
+            if (Math.abs(crank_1.x - this.Character.x) <= obtainLength) {
                 if (inventory.has('Oil')) {
                     water1.visible = true;
                 } else {

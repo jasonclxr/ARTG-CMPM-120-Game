@@ -7,7 +7,7 @@ class Sapling extends Phaser.GameObjects.Sprite {
         this.setInteractive({ cursor: 'url(./assets/pngs/WellFull.png), pointer' });
 
         this.on('pointerdown', () => {
-            if (Math.abs(this.x - scene.Character.x) <= 70) {
+            if (Math.abs(this.x - scene.Character.x) <= obtainLength) {
                 if ( inventory.has("Bucket") ) {
                     console.log("Watered tree");
                     treeBig = true;

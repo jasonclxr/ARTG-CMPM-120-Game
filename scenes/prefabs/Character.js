@@ -2,8 +2,8 @@ class Character extends Phaser.Physics.Matter.Sprite {
     constructor(scene, spawnX, spawnY) {
         super(scene.matter.world, spawnX, spawnY, 'char_atlas', 'CharRight0');
 
-        this.VELOCITY = 4;
-        this.JUMP_VELOCITY = -10;
+        this.VELOCITY = 3;
+        this.JUMP_VELOCITY = -8;
         this.JUMPING = false;
 
         scene.add.existing(this);

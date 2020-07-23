@@ -8,7 +8,7 @@ class Bucket extends Phaser.Physics.Matter.Sprite {
         this.setInteractive({ cursor: 'url(./assets/pngs/WellFull.png), pointer' });
 
         this.on('pointerdown', () => {
-            if (Math.abs(this.x - scene.Character.x) <= 70) {
+            if (Math.abs(this.x - scene.Character.x) <= obtainLength) {
                 console.log("Obtained bucket");
                 inventory.add("Bucket", 1)
                 this.destroy();

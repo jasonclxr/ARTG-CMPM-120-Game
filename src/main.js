@@ -12,11 +12,17 @@
 
 let cursors;
 let currentScene = 0;
+var prevX = 0;
+var prevY = 0;
+var 
+
 const SCALE = 0.5;
 const tileSize = 35;
 const inventory = new Inventory();
-var prevX = 0;
-var prevY = 0;
+const obtainLength = 80
+
+
+
 var treeBig = false;
 
 var gameConfig = {
@@ -24,7 +30,7 @@ var gameConfig = {
     width: 1200,
     height: 800,
     parent: 'game',
-    scene: [Preload, CityScene, WellScene, DamnScene, DamnScene_Present],
+    scene: [Preload, CityScene, WellScene, DamnScene_Future, DamnScene_Present],
     physics: {
         default: "matter",
         matter: {

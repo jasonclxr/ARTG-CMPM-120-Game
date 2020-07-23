@@ -7,7 +7,7 @@ class WellScene extends Phaser.Scene {
         let background = this.add.image(0, 0, 'wellbackground').setOrigin(0, 0) ;
         background.displayHeight = game.config.height
         background.displayWidth = game.config.width
-        this.matter.world.setBounds(0, 0, game.config.width, game.config.height);
+        this.matter.world.setBounds(400, 0, 400, game.config.height);
 
         this.add.text(game.config.width / 2, 30, 'Initial City Level: Well Scene', { font: '30px Arial', fill: '#FFFFFF' }).setOrigin(0.5);
 
@@ -34,7 +34,7 @@ class WellScene extends Phaser.Scene {
         this.timeTravel = () => {
             console.log("time travel time");
             this.Character.WalkingSound.stop();
-            this.scene.start("CityScene");
+            this.scene.start("CityScene_Future");
         }
     }
 

@@ -11,7 +11,8 @@ class Preload extends Phaser.Scene {
 
         this.load.image('rope', './assets/pngs/rope.png')
         this.load.image('leftsign', './assets/pngs/leftsign.png')
-        this.load.image('damScene', './assets/pngs/damScene.png')
+        this.load.image('damScenePresent', './assets/pngs/damScenePresent.png')
+        this.load.image('damSceneFuture', './assets/pngs/damSceneFuture.png')
         this.load.image('pile', './assets/pngs/pile.png')
         this.load.image('crankBase', './assets/pngs/crankBase.png')
         this.load.image('crankHandle', './assets/pngs/crankHandle.png')
@@ -84,7 +85,7 @@ class Preload extends Phaser.Scene {
             repeat: 3
         });
         
-        this.scene.start("CityScene");
+        this.scene.start("DamnScene_Present");
     }
 
 }

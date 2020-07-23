@@ -23,8 +23,6 @@ const tileSize = 35;
 const inventory = new Inventory();
 const obtainLength = 80
 
-
-
 var treeBig = false;
 
 var gameConfig = {

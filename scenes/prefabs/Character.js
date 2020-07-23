@@ -5,6 +5,7 @@ class Character extends Phaser.Physics.Matter.Sprite {
         this.VELOCITY = 3;
         this.JUMP_VELOCITY = -8;
         this.JUMPING = false;
+        this.setFriction(0)
 
         scene.add.existing(this);
         scene.keys = scene.input.keyboard.createCursorKeys();

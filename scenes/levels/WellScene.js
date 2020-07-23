@@ -22,19 +22,16 @@ class WellScene extends Phaser.Scene {
 
         if (!inventory.has("Coin")) {
             this.Coin = new Coin(this, game.config.width / 2, game.config.height - 30);
-
             this.Character.setOnCollideWith(this.Coin, () => {
                 console.log("touched coin");
             })
-
-
             this.Rope = new Rope(this, game.config.width/2, 700);
         }
         
         this.timeTravel = () => {
             console.log("time travel time");
             this.Character.WalkingSound.stop();
-            this.scene.start("CityScene_Future");
+            this.scene.start("CityScene");
         }
     }
 

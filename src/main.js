@@ -14,7 +14,9 @@ let cursors;
 let currentScene = 0;
 var prevX = 0;
 var prevY = 0;
-var 
+var pipe1 = false;
+var pipe2 = false;
+var pipe3 = false;
 
 const SCALE = 0.5;
 const tileSize = 35;

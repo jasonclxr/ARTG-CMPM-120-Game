@@ -45,7 +45,7 @@ class CityScene extends Phaser.Scene {
                 this.Character.WalkingSound.stop()
                 prevX = 1170
                 prevY = 500
-                this.scene.start("DamnScene");
+                this.scene.start("DamnScene_Future");
             })
         } else {
             this.Character = new Character(this, game.config.width / 10, game.config.height / 2 - tileSize * 2);

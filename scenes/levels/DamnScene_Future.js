@@ -11,11 +11,11 @@ class DamnScene_Future extends Phaser.Scene {
         Fade(this, "In")
 
         let water1 = new DamWater(this, 350, 630);
-        water1.visible = false;
+        water1.visible = pipe1;
         let water2 = new DamWater(this, 590, 630);
-        water2.visible = false;
+        water2.visible = pipe2;
         let water3 = new DamWater(this, 830, 630);
-        water3.visible = false;
+        water3.visible = pipe3;
         let ladder = new Ladder(this, 250, 225)
         let crank_1 = new Crank(this, 100, 465)
         let crank_2 = new Crank(this, 950, 165)
@@ -59,18 +59,6 @@ class DamnScene_Future extends Phaser.Scene {
         if (!inventory.has('Oil')) {
             let oil = new Oil(this, 175, 500)
         }
-        
-
-
-        crank_1.on('pointerdown', () => {
-            if (Math.abs(crank_1.x - this.Character.x) <= obtainLength) {
-                if (inventory.has('Oil')) {
-                    water1.visible = true;
-                } else {
-                    console.log("you need oil!")
-                }
-            }
-        })
 
         let line1 = new Line(this, 520, 94)
         let line2 = new Line(this, 520, 406)

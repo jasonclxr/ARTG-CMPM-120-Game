@@ -9,11 +9,11 @@ class DamnScene_Present extends Phaser.Scene {
         this.matter.world.setBounds(0, 0, game.config.width, 525);
         Fade(this, "In")
         let water1 = new DamWater(this, 350, 630);
-        water1.visible = false;
+        water1.visible = pipe1;
         let water2 = new DamWater(this, 590, 630);
-        water2.visible = false;
+        water2.visible = pipe2;
         let water3 = new DamWater(this, 830, 630);
-        water3.visible = false;
+        water3.visible = pipe3;
         let ladder = new Ladder(this, 250, 225)
         if (!inventory.has("Screwdriver")) {
             let screwdriver = new Screwdriver(this, 100, 397)
@@ -35,6 +35,7 @@ class DamnScene_Present extends Phaser.Scene {
                 crank_3.on('pointerdown', () => {
                     if (Math.abs(crank_3.x - this.Character.x) <= 70) {
                         water2.visible = true;
+                        pipe2 = true;
                     }
                 })
             }
@@ -48,6 +49,13 @@ class DamnScene_Present extends Phaser.Scene {
 
         let constructionSign = new ConstructionSign(this, 1100, 530);
         let sapling = new Sapling(this, 1000, 530);
+        sapling.setInteractive({ cursor: 'url(./assets/pngs/WellFull.png), pointer' });
+        sapling.on('pointerdown', () => {
+            if (Math.abs(sapling.x - this.Character.x) <= obtainLength && inventory.has("Bucket")) {
+                console.log("Watered tree");
+                treeBig = true;
+            }
+        })
 
         this.timeTravel = () => {
             console.log("time travel time");
@@ -59,8 +67,9 @@ class DamnScene_Present extends Phaser.Scene {
 
         crank_1.on('pointerdown', () => {
             if (Math.abs(crank_1.x - this.Character.x) <= obtainLength) {
-                if (inventory.has('Oil')) {
+                if (inventory.has('Oil')&& !pipe1) {
                     water1.visible = true;
+                    pipe1 = true;
                 } else {
                     console.log("you need oil!")
                 }

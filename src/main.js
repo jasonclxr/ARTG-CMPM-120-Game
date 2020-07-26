@@ -17,6 +17,7 @@ var prevY = 0;
 var pipe1 = false;
 var pipe2 = false;
 var pipe3 = false;
+var gotcrank = false;
 
 const SCALE = 0.5;
 const tileSize = 35;
@@ -30,7 +31,7 @@ var gameConfig = {
     width: 1200,
     height: 800,
     parent: 'game',
-    scene: [Preload, CityScene, WellScene, DamnScene_Future, DamnScene_Present],
+    scene: [Preload, CityScene_Present, CityScene_Future, WellScene, DamnScene_Future, DamnScene_Present],
     physics: {
         default: "matter",
         matter: {

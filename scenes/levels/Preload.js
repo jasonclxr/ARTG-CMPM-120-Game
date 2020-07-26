@@ -33,6 +33,8 @@ class Preload extends Phaser.Scene {
         this.load.image('line', './assets/pngs/Line.png')
         this.load.image('bigTree', './assets/pngs/Tree.png')
         this.load.image('inventory', './assets/pngs/Inventory.png')
+        this.load.image('cityfuture', './assets/pngs/CityFuture.png')
+        this.load.image('citypresent', './assets/pngs/CityPresent.png')
 
         this.load.audio('gravelwet', './assets/sounds/gravel_steps_dry.mp3')
         this.load.audio('splash', './assets/sounds/sploosh.mp3')
@@ -40,8 +42,7 @@ class Preload extends Phaser.Scene {
         this.load.atlas('platformer_atlas', './assets/sprites/kenny_sheet.png', './assets/sprites/kenny_sheet.json');
         this.load.atlas('coin_atlas', './assets/sprites/coin_sheet.png', './assets/sprites/coin_sheet.json');
         this.load.atlas('char_atlas', './assets/sprites/char_sheet.png', './assets/sprites/char_sheet.json');
-
-        console.log("Assets all loaded up!");
+        console.log("Loading all assets, this may take about 10-15 seconds");
     }
 
     create() {
@@ -87,8 +88,8 @@ class Preload extends Phaser.Scene {
             frameRate: 50,
             repeat: 6
         });
-        
-        this.scene.start("CityScene");
+        console.log("Assets all loaded up!");
+        this.scene.start("CityScene_Present");
     }
 
 }

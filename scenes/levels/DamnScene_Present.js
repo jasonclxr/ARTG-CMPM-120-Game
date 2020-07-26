@@ -69,8 +69,9 @@ class DamnScene_Present extends Phaser.Scene {
         let sapling = new Sapling(this, 1000, 560);
         sapling.setInteractive({ cursor: 'url(./assets/pngs/WellFull.png), pointer' });
         sapling.on('pointerdown', () => {
-            if (Math.abs(sapling.x - this.Character.x) <= obtainLength && inventory.has("Bucket")) {
+            if (Math.abs(sapling.x - this.Character.x) <= obtainLength && inventory.has("fullbucket")) {
                 console.log("Watered tree");
+                inventory.remove('fullbucket');
                 treeBig = true;
             }
         })
@@ -80,13 +81,19 @@ class DamnScene_Present extends Phaser.Scene {
             this.Character.WalkingSound.stop();
             prevX = this.Character.x;
             prevY = this.Character.y;
-            this.scene.start("DamnScene_Future");
+
+            Fade(this, "Out");
+            let thiss = this
+            setTimeout(function () {
+                thiss.scene.start("DamnScene_Future");
+            }, 1000)
         }
 
         crank_1.on('pointerdown', () => {
             if (Math.abs(crank_1.x - this.Character.x) <= obtainLength) {
                 if (inventory.has('oil')&& !pipe1) {
                     water1.visible = true;
+                    inventory.remove('oil');
                     pipe1 = true;
                 } else {
                     console.log("you need oil!")

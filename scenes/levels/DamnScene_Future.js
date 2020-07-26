@@ -7,9 +7,7 @@ class DamnScene_Future extends Phaser.Scene {
         background.displayHeight = game.config.height
         background.displayWidth = game.config.width
         this.matter.world.setBounds(0, 0, game.config.width, 575);
-
         Fade(this, "In")
-
         let water1 = new DamWater(this, 120, 730);
         water1.visible = pipe1;
         let water2 = new DamWater(this, 340, 730);
@@ -19,22 +17,25 @@ class DamnScene_Future extends Phaser.Scene {
         let ladder = new Ladder(this, 250, 175)
         let crank_1 = new Crank(this, 100, 500)
         let crank_2 = new Crank(this, 850, 100)
-        let crank_3 = new Crank(this, 450, 300)
         crank_1.setInteractive();
         crank_2.setInteractive();
-        crank_3.setInteractive();
 
-        crank_3.on('pointerdown', () => {
-            if (Math.abs(crank_3.x - this.Character.x) <= obtainLength) {
-                if (inventory.has('Screwdriver')) {
-                    inventory.add(this, 'Crank');
-                    crank_3.destroy();
+        if (!gotcrank) {
+            let crank_3 = new Crank(this, 450, 300)
+            crank_3.setInteractive();
+            crank_3.on('pointerdown', () => {
+                if (Math.abs(crank_3.x - this.Character.x) <= obtainLength) {
+                    if (inventory.has('screwdriver')) {
+                        inventory.add(this, 'Crank');
+                        gotcrank = true;
+                        inventory.remove(this, 'screwdriver')
+                        crank_3.destroy();
+                    }
                 }
-            }
-        })
+            })
+        }
 
         let crack = new Crack(this, 600, 500);
-
         this.add.text(game.config.width / 2, 30, 'Dam Scene - Future', { font: '30px Arial', fill: '#FFFFFF' }).setOrigin(0.5);
         this.Character = new Character(this, prevX, prevY);
         this.stateMachine.transition('idle')
@@ -42,7 +43,6 @@ class DamnScene_Future extends Phaser.Scene {
         let water4 = new DamWater(this, 630, 530);
         water4.setScale(0.15)
 
-        
         let sapling = new Sapling(this, 1000, 560);
         if (treeBig == true) {
             let tree = new BigTree(this, sapling.x, sapling.y - 50)
@@ -56,16 +56,21 @@ class DamnScene_Future extends Phaser.Scene {
             this.Character.WalkingSound.stop();
             prevX = this.Character.x;
             prevY = this.Character.y;
-            this.scene.start("DamnScene_Present");
+
+            Fade(this, "Out");
+            let thiss = this
+            setTimeout(function () {
+                thiss.scene.start("DamnScene_Present");
+            }, 1000)
+            
         }
 
         if (!inventory.has('oil')) {
             let oil = new Oil(this, 175, 555)
         }
 
-        let line1 = new Line(this, 260, 163)
-        let line2 = new Line(this, 260, 370)
-
+        let line1 = new Line(this, 460, 163)
+        let line2 = new Line(this, 460, 370)
         this.InventoryGui = new InventoryGui(this);
     }
 

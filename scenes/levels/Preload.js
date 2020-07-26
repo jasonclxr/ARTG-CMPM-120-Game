@@ -28,9 +28,11 @@ class Preload extends Phaser.Scene {
         this.load.image('screwdriver', './assets/pngs/screwdriver.png')
         this.load.image('water', './assets/pngs/water.png')
         this.load.image('floodWater', './assets/pngs/FloodWater.png')
-        this.load.image('bucket', './assets/pngs/bucket.png')
+        this.load.image('fullbucket', './assets/pngs/bucket.png')
+        this.load.image('emptybucket', './assets/pngs/EmptyBucket.png')
         this.load.image('line', './assets/pngs/Line.png')
         this.load.image('bigTree', './assets/pngs/Tree.png')
+        this.load.image('inventory', './assets/pngs/Inventory.png')
 
         this.load.audio('gravelwet', './assets/sounds/gravel_steps_dry.mp3')
         this.load.audio('splash', './assets/sounds/sploosh.mp3')
@@ -82,8 +84,8 @@ class Preload extends Phaser.Scene {
                 suffix: '',
                 zeroPad: 0
             }),
-            frameRate: 25,
-            repeat: 3
+            frameRate: 50,
+            repeat: 6
         });
         
         this.scene.start("CityScene");

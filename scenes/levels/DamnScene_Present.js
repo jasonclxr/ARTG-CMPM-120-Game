@@ -19,7 +19,7 @@ class DamnScene_Present extends Phaser.Scene {
         ladder.setInteractive({ cursor: 'url(./assets/pngs/WellFull.png), pointer' });
         ladder.on('pointerdown', () => {
             if (Math.abs(ladder.x - this.Character.x) <= obtainLength*2) {
-                if (inventory.has('Rope')) {
+                if (inventory.has('rope')) {
                     let ropeLadder = new RopeLadder(this, ladder.x, ladder.y + 50)
                     ropeLadder.setInteractive({ cursor: 'url(./assets/pngs/WellFull.png), pointer' });
                     ropeLadder.on('pointerdown', () => {
@@ -61,7 +61,6 @@ class DamnScene_Present extends Phaser.Scene {
             }
         })
 
-        let crack = this.add.image(600, 500, 'bigCrack').setScale(0.05);
         this.add.text(game.config.width / 2, 30, 'Dam Scene - Present', { font: '30px Arial', fill: '#FFFFFF' }).setOrigin(0.5);
         this.Character = new Character(this, prevX, prevY);
         this.stateMachine.transition('idle')
@@ -86,7 +85,7 @@ class DamnScene_Present extends Phaser.Scene {
 
         crank_1.on('pointerdown', () => {
             if (Math.abs(crank_1.x - this.Character.x) <= obtainLength) {
-                if (inventory.has('Oil')&& !pipe1) {
+                if (inventory.has('oil')&& !pipe1) {
                     water1.visible = true;
                     pipe1 = true;
                 } else {
@@ -107,6 +106,8 @@ class DamnScene_Present extends Phaser.Scene {
         let line1_2 = new Line(this, 810, 163)
         line1_2.displayWidth = 265
         let line2 = new Line(this, 460, 370)
+        
+        this.InventoryGui = new InventoryGui(this);
     }
 
     update() {

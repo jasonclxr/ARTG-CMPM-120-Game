@@ -27,7 +27,7 @@ class DamnScene_Future extends Phaser.Scene {
         crank_3.on('pointerdown', () => {
             if (Math.abs(crank_3.x - this.Character.x) <= obtainLength) {
                 if (inventory.has('Screwdriver')) {
-                    inventory.add('Crank');
+                    inventory.add(this, 'Crank');
                     crank_3.destroy();
                 }
             }
@@ -59,15 +59,14 @@ class DamnScene_Future extends Phaser.Scene {
             this.scene.start("DamnScene_Present");
         }
 
-        if (!inventory.has('Oil')) {
+        if (!inventory.has('oil')) {
             let oil = new Oil(this, 175, 555)
         }
 
         let line1 = new Line(this, 260, 163)
-        line1.displayWidth = 540
-        let line1_2 = new Line(this, 810, 163)
-        line1_2.displayWidth = 265
-        let line2 = new Line(this, 460, 370)
+        let line2 = new Line(this, 260, 370)
+
+        this.InventoryGui = new InventoryGui(this);
     }
 
     update() {

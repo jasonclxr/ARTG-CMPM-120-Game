@@ -30,8 +30,16 @@ class IdleState extends State {
         if (character.JUMPING == false && Phaser.Input.Keyboard.JustDown(up)) {
             scene.stateMachine.transition('jump');
         }
-        if (Phaser.Input.Keyboard.JustDown(space) && inventory.has("Coin")) {
-            scene.timeTravel();
+        if (Phaser.Input.Keyboard.JustDown(space) && inventory.has("coin_atlas")) {
+            tossCoin(scene, character)
+
+            setTimeout(function () {
+                Fade(scene, "Out") 
+            }, 800)
+
+            setTimeout(function () {
+                scene.timeTravel();
+            }, 1600)
         }
     }
 }
@@ -60,15 +68,22 @@ class MoveState extends State {
         if (character.JUMPING == false && Phaser.Input.Keyboard.JustDown(up)) {
             scene.stateMachine.transition('jump');
         }
-        if (Phaser.Input.Keyboard.JustDown(space) && inventory.has("Coin")) {
-            scene.timeTravel();
+        if (Phaser.Input.Keyboard.JustDown(space) && inventory.has("coin_atlas")) {
+            tossCoin(scene, character)
+
+            setTimeout(function () {
+                Fade(scene, "Out")
+            }, 800)
+
+            setTimeout(function () {
+                scene.timeTravel();
+            }, 1600)
         }
     }
 }
 
 class JumpState extends State {
     enter(scene, character) {
-        console.log("jumping");
         character.JUMPING = true;
         character.setVelocityY(character.JUMP_VELOCITY);
     }

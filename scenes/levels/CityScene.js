@@ -27,7 +27,7 @@ class CityScene extends Phaser.Scene {
             groundTile.setStatic(true);
             groundTile.setAlpha(0.65);
         }
-        if (!inventory.has("Bucket")) {
+        if (!inventory.has("emptybucket")) {
             let bucket = new Bucket(this, 300, 358)
         }
         
@@ -39,8 +39,8 @@ class CityScene extends Phaser.Scene {
 
         this.ConstructionSign = new LeftSign(this, 40, 760);
 
-        if (inventory.has("Coin")) {
-            this.Character = new Character(this, 1000, 700);
+        if (inventory.has("coin_atlas")) {
+            this.Character = new Character(this, 850, 700);
             this.Character.setOnCollideWith(this.ConstructionSign, () => {
                 this.Character.WalkingSound.stop()
                 prevX = 1170
@@ -65,6 +65,8 @@ class CityScene extends Phaser.Scene {
         this.timeTravel = () => {
             console.log("cannot time travel here");
         }
+
+        this.InventoryGui = new InventoryGui(this);
     }
 
     update() {

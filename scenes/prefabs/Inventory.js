@@ -42,12 +42,12 @@ class Inventory {
             this.Item2 = "null"
             scene.InventoryGui.update()
         } else if (this.Item3 == name) {
+            this.Item3 = "null"
+            scene.InventoryGui.update()
+        } else if (this.Item4 == name) {
             this.Item4 = "null"
             scene.InventoryGui.update()
-        } else if (this.Item3 == name) {
-            this.Item4 = "null"
-            scene.InventoryGui.update()
-        } 
+        }
     }
 
     has(name) {

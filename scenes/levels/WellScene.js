@@ -30,7 +30,6 @@ class WellScene extends Phaser.Scene {
             this.Character.WalkingSound.stop();
             this.scene.start("CityScene_Future");
         }
-
         this.InventoryGui = new InventoryGui(this);
     }
 

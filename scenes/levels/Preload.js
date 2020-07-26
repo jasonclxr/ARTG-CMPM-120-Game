@@ -27,6 +27,7 @@ class Preload extends Phaser.Scene {
         this.load.image('sapling', './assets/pngs/sapling.png')
         this.load.image('screwdriver', './assets/pngs/screwdriver.png')
         this.load.image('water', './assets/pngs/water.png')
+        this.load.image('newwater', './assets/pngs/water2.png')
         this.load.image('floodWater', './assets/pngs/FloodWater.png')
         this.load.image('fullbucket', './assets/pngs/bucket.png')
         this.load.image('emptybucket', './assets/pngs/EmptyBucket.png')

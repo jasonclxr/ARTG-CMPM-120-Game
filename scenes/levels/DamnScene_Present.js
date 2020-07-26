@@ -8,11 +8,11 @@ class DamnScene_Present extends Phaser.Scene {
         background.displayWidth = game.config.width
         this.matter.world.setBounds(0, 0, game.config.width, 575);
         Fade(this, "In")
-        let water1 = new DamWater(this, 120, 730);
+        let water1 = new DamWater(this, 150, 750);
         water1.visible = pipe1;
-        let water2 = new DamWater(this, 340, 730);
+        let water2 = new DamWater(this, 365, 750);
         water2.visible = pipe2;
-        let water3 = new DamWater(this, 560, 730);
+        let water3 = new DamWater(this, 585, 750);
         water3.visible = pipe3;
         let ladder = new Ladder(this, 250, 175)
         
@@ -34,7 +34,7 @@ class DamnScene_Present extends Phaser.Scene {
         })
 
 
-        if (!inventory.has("Screwdriver")) {
+        if (!inventory.has("screwdriver")) {
             let screwdriver = new Screwdriver(this, 100, 362)
         }
         
@@ -48,7 +48,7 @@ class DamnScene_Present extends Phaser.Scene {
         crank_3_broken.setInteractive({ cursor: 'url(./assets/pngs/WellFull.png), pointer' });
 
         crank_3_broken.on('pointerdown', () => {
-            if (inventory.has('Crank') && Math.abs(crank_3_broken.x - this.Character.x) <= obtainLength) {
+            if (inventory.has('crankHandle') && Math.abs(crank_3_broken.x - this.Character.x) <= obtainLength) {
                 crank_3_broken.visible = false;
                 let crank_3 = new Crank(this, 450, 300)
                 crank_3.setInteractive({ cursor: 'url(./assets/pngs/WellFull.png), pointer' });
@@ -71,7 +71,7 @@ class DamnScene_Present extends Phaser.Scene {
         sapling.on('pointerdown', () => {
             if (Math.abs(sapling.x - this.Character.x) <= obtainLength && inventory.has("fullbucket")) {
                 console.log("Watered tree");
-                inventory.remove('fullbucket');
+                inventory.remove(this, 'fullbucket');
                 treeBig = true;
             }
         })
@@ -91,9 +91,9 @@ class DamnScene_Present extends Phaser.Scene {
 
         crank_1.on('pointerdown', () => {
             if (Math.abs(crank_1.x - this.Character.x) <= obtainLength) {
-                if (inventory.has('oil')&& !pipe1) {
+                if (inventory.has('oil') && !pipe1) {
                     water1.visible = true;
-                    inventory.remove('oil');
+                    inventory.remove(this, "oil");
                     pipe1 = true;
                 } else {
                     console.log("you need oil!")

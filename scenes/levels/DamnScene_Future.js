@@ -8,11 +8,11 @@ class DamnScene_Future extends Phaser.Scene {
         background.displayWidth = game.config.width
         this.matter.world.setBounds(0, 0, game.config.width, 575);
         Fade(this, "In")
-        let water1 = new DamWater(this, 120, 730);
+        let water1 = new DamWater(this, 150, 750);
         water1.visible = pipe1;
-        let water2 = new DamWater(this, 340, 730);
+        let water2 = new DamWater(this, 365, 750);
         water2.visible = pipe2;
-        let water3 = new DamWater(this, 560, 730);
+        let water3 = new DamWater(this, 585, 750);
         water3.visible = pipe3;
         let ladder = new Ladder(this, 250, 175)
         let crank_1 = new Crank(this, 100, 500)
@@ -26,7 +26,7 @@ class DamnScene_Future extends Phaser.Scene {
             crank_3.on('pointerdown', () => {
                 if (Math.abs(crank_3.x - this.Character.x) <= obtainLength) {
                     if (inventory.has('screwdriver')) {
-                        inventory.add(this, 'Crank');
+                        inventory.add(this, 'crankHandle');
                         gotcrank = true;
                         inventory.remove(this, 'screwdriver')
                         crank_3.destroy();

@@ -34,7 +34,7 @@ class CityScene_Future extends Phaser.Scene {
 
                 Fade(this, "Out");
                 setTimeout(function () {
-                    thiss.scene.start("DamnScene_Present");
+                    thiss.scene.start("DamnScene_Future");
                 }, 1000)
             })
         } else {

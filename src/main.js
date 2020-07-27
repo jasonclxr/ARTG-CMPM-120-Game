@@ -5,10 +5,20 @@
 	Emails: jblecman@ucsc.edu, lgrubbs@ucsc.edu, esmichae@ucsc.edu
 	CruzIDs: jblecman, lgrubbs, esmichae
 
-	July 13th, 2020
+    July 13th, 2020
+    
+    █▀█ █▀█ █▀█ █▀▀ █▀█ ▄▀█ █▀▄▀█ █▀▄▀█ █▀▀ █▀▄   █▄▄ █▄█
+    █▀▀ █▀▄ █▄█ █▄█ █▀▄ █▀█ █░▀░█ █░▀░█ ██▄ █▄▀   █▄█ ░█░
+
+    ░░█ ▄▀█ █▀ █▀█ █▄░█
+    █▄█ █▀█ ▄█ █▄█ █░▀█
 */
 
 'use strict';
+
+const SCALE = 0.5;
+const tileSize = 35;
+const obtainLength = 80
 
 let cursors;
 let currentScene = 0;
@@ -18,20 +28,14 @@ var pipe1 = false;
 var pipe2 = false;
 var pipe3 = false;
 var gotcrank = false;
-
-const SCALE = 0.5;
-const tileSize = 35;
-const inventory = new Inventory();
-const obtainLength = 80
-
+var inventory = new Inventory();
 var treeBig = false;
-
 var gameConfig = {
     type: Phaser.AUTO,
     width: 1200,
     height: 800,
     parent: 'game',
-    scene: [Preload, CityScene_Present, CityScene_Future, WellScene, DamnScene_Future, DamnScene_Present],
+    scene: [Preload, Menu, CityScene_Present, CityScene_Future, WellScene, DamnScene_Future, DamnScene_Present, EndCredits],
     physics: {
         default: "matter",
         matter: {

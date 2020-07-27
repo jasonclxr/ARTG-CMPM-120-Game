@@ -1,12 +1,14 @@
+//The character class. This works in tandem with the scenes and the state machine.
+
 class Character extends Phaser.Physics.Matter.Sprite {
-    constructor(scene, spawnX, spawnY) {
+    constructor(scene, spawnX, spawnY, sound) {
         super(scene.matter.world, spawnX, spawnY, 'char_atlas', 'CharRight0');
 
         this.VELOCITY = 3;
         this.JUMP_VELOCITY = -8;
         this.JUMPING = false;
         this.setFriction(0)
-
+        this.setDepth(1)
         scene.add.existing(this);
         scene.keys = scene.input.keyboard.createCursorKeys();
         scene.stateMachine = new StateMachine('time', {
@@ -25,7 +27,7 @@ class Character extends Phaser.Physics.Matter.Sprite {
             loop: true,
             delay: 0
         }
-        this.WalkingSound = scene.sound.add('gravelwet', soundConfig);
+        this.WalkingSound = scene.sound.add(sound, soundConfig);
         this.setScale(0.15, 0.15)
 
         this.setOnCollideActive(() => {

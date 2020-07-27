@@ -1,3 +1,6 @@
+//this here bad boy is the Damn Scene in the present time. Most of this is conditional checking
+//and setting up events for mouse and player interactions.
+
 class DamnScene_Present extends Phaser.Scene {
     constructor () {
         super('DamnScene_Present');
@@ -20,6 +23,7 @@ class DamnScene_Present extends Phaser.Scene {
         ladder.on('pointerdown', () => {
             if (Math.abs(ladder.x - this.Character.x) <= obtainLength*2) {
                 if (inventory.has('rope')) {
+                    this.sound.play('rope');
                     let ropeLadder = new RopeLadder(this, ladder.x, ladder.y + 50)
                     ropeLadder.setInteractive({ cursor: 'url(./assets/pngs/WellFull.png), pointer' });
                     ropeLadder.on('pointerdown', () => {
@@ -62,7 +66,7 @@ class DamnScene_Present extends Phaser.Scene {
         })
 
         this.add.text(game.config.width / 2, 30, 'Dam Scene - Present', { font: '30px Arial', fill: '#FFFFFF' }).setOrigin(0.5);
-        this.Character = new Character(this, prevX, prevY);
+        this.Character = new Character(this, prevX, prevY, 'graveldry');
         this.stateMachine.transition('idle')
 
         let constructionSign = new ConstructionSign(this, 1100, 560);
@@ -119,5 +123,11 @@ class DamnScene_Present extends Phaser.Scene {
 
     update() {
         this.stateMachine.step();
+
+        if (pipe1 && pipe2 && pipe3) {
+            setTimeout(() => {
+                this.scene.start('EndCredits')
+            }, 1000)
+        }
     }
 }

@@ -1,3 +1,5 @@
+//The object class to be able to put a rope on the ladder to climb it.
+
 class Rope extends Phaser.Physics.Matter.Image {
     constructor(scene, x, y) {
         super(scene.matter.world, x, y, 'rope');
@@ -14,5 +16,12 @@ class Rope extends Phaser.Physics.Matter.Image {
                 
             }
         })
+
+        this.Hover = new HoverOver(scene, this, 'ropeGlow')
+    }
+
+    destroy() {
+        this.Hover.destroy()
+        super.destroy()
     }
 }

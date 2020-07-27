@@ -1,3 +1,7 @@
+//The city present scene. in this scene you primarily just walk across to touch the sign. There's
+//a couple functions for time traveling, and some conditionals for what to spawn.
+
+
 class CityScene_Present extends Phaser.Scene {
     constructor () {
         super('CityScene_Present');
@@ -18,21 +22,7 @@ class CityScene_Present extends Phaser.Scene {
         this.emptyWell.setStatic(true);
 
         let thiss = this
-        if (inventory.has("coin_atlas")) {
-            this.Character = new Character(this, 850, 700);
-            this.Character.setOnCollideWith(this.ConstructionSign, () => {
-                this.Character.WalkingSound.stop()
-                prevX = 1170
-                prevY = 500
-
-                Fade(this, "Out");
-                setTimeout(function () {
-                    thiss.scene.start("DamnScene_Future");
-                }, 1000)
-            })
-        } else {
-            this.Character = new Character(this, game.config.width / 10, game.config.height / 2 - tileSize * 2);
-        }
+        this.Character = new Character(this, prevX, prevY, 'graveldry');
         Fade(this, "In")
         
         setTimeout(function() {
@@ -49,7 +39,16 @@ class CityScene_Present extends Phaser.Scene {
         })
 
         this.timeTravel = () => {
-            console.log("cannot time travel here");
+            console.log("time travel time");
+            this.Character.WalkingSound.stop();
+            prevX = this.Character.x;
+            prevY = this.Character.y;
+
+            Fade(this, "Out");
+            let thiss = this
+            setTimeout(function () {
+                thiss.scene.start("CityScene_Future");
+            }, 1000)
         }
 
         this.InventoryGui = new InventoryGui(this);

@@ -1,3 +1,5 @@
+//the preload scene. thisll just load everything up, then take you to the menu scene. :3
+
 class Preload extends Phaser.Scene {
     constructor() {
         super("Preload");
@@ -8,6 +10,9 @@ class Preload extends Phaser.Scene {
         this.load.image('emptywell', './assets/pngs/WellEmpty.png')
         this.load.image('fullwell', './assets/pngs/WellFull.png')
         this.load.image('wellbackground', './assets/pngs/WellScene.png')
+        this.load.image('endCredit1', './assets/pngs/Completed.png')
+        this.load.image('menu', './assets/pngs/Menu.png')
+        this.load.image('endCredit2', './assets/pngs/credits.png')
 
         this.load.image('rope', './assets/pngs/rope.png')
         this.load.image('leftsign', './assets/pngs/leftsign.png')
@@ -36,14 +41,32 @@ class Preload extends Phaser.Scene {
         this.load.image('inventory', './assets/pngs/Inventory.png')
         this.load.image('cityfuture', './assets/pngs/CityFuture.png')
         this.load.image('citypresent', './assets/pngs/CityPresent.png')
+        this.load.image('bigTreeGlow', './assets/pngs/TreeGlow.png')
+        this.load.image('screwdriverGlow', './assets/pngs/ScrewdriverGlow.png')
+        this.load.image('saplingGlow', './assets/pngs/SaplingGlow.png')
+        this.load.image('ropeGlow', './assets/pngs/RopeGlow.png')
+        this.load.image('oilGlow', './assets/pngs/OilGlow.png')
+        this.load.image('ladderGlow', './assets/pngs/LadderGlow.png')
+        this.load.image('crankHandleGlow', './assets/pngs/CrankGlow.png')
+        this.load.image('bucketGlow', './assets/pngs/BucketGlow.png')
 
-        this.load.audio('gravelwet', './assets/sounds/gravel_steps_dry.mp3')
+        this.load.audio('gravelwet', './assets/sounds/gravel_steps_wet.mp3')
         this.load.audio('splash', './assets/sounds/sploosh.mp3')
+        this.load.audio('bucket', './assets/sounds/buccet.mp3')
+        this.load.audio('graveldry', './assets/sounds/gravel_steps_dry.mp3')
+        this.load.audio('drips', './assets/sounds/lots_of_drops.mp3')
+        this.load.audio('coinflip', './assets/sounds/Coin_final.mp3')
+        this.load.audio('wheel', './assets/sounds/Coin_final.mp3')
+        this.load.audio('rope', './assets/sounds/ROOOOOPE.mp3')
+        this.load.audio('screwdriver', './assets/sounds/Screwdriver_final_sfx.mp3')
+
 
         this.load.atlas('platformer_atlas', './assets/sprites/kenny_sheet.png', './assets/sprites/kenny_sheet.json');
         this.load.atlas('coin_atlas', './assets/sprites/coin_sheet.png', './assets/sprites/coin_sheet.json');
         this.load.atlas('char_atlas', './assets/sprites/char_sheet.png', './assets/sprites/char_sheet.json');
         console.log("Loading all assets, this may take about 10-15 seconds");
+
+        this.add.text(game.config.width / 2, game.config.height / 2, 'loading all assets, just give it a sec!', { font: '30px Arial', fill: '#FFFFFF' }).setOrigin(0.5);
     }
 
     create() {
@@ -90,7 +113,8 @@ class Preload extends Phaser.Scene {
             repeat: 6
         });
         console.log("Assets all loaded up!");
-        this.scene.start("CityScene_Present");
+
+        this.scene.start("EndCredits");
     }
 
 }

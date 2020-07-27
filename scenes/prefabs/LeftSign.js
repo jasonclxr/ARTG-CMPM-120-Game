@@ -1,3 +1,5 @@
+//The sign to indicate where to go!
+
 class LeftSign extends Phaser.Physics.Matter.Image {
     constructor(scene, x, y) {
         super(scene.matter.world, x, y, 'leftsign');

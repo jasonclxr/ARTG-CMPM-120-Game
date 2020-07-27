@@ -1,3 +1,6 @@
+//Couldn't find a way to uncollide the construction sign, so I just
+//put two different classes. ¯\_(ツ)_/¯
+
 class ConstructionSign extends Phaser.GameObjects.Sprite {
     constructor(scene, x, y) {
         super(scene, x, y, 'constructionSign');

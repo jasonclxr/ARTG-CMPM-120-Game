@@ -1,3 +1,6 @@
+//This class manages the Inventory, which used to be a dictionary style, but once
+//we switched to a limit 4 inventory, i figured id just do it this way.
+
 class Inventory {
     constructor() {
         this.Item1 = "null";

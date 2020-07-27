@@ -1,3 +1,6 @@
+//The city future scene. in this scene you primarily just walk across to touch the sign. There's
+//a couple functions for time traveling, and some conditionals for what to spawn.
+
 class CityScene_Future extends Phaser.Scene {
     constructor () {
         super('CityScene_Future');
@@ -17,6 +20,7 @@ class CityScene_Future extends Phaser.Scene {
         this.fullWell.on('pointerdown', () => {
             if (Math.abs(this.fullWell.x - this.Character.x) <= obtainLength) {
                 if (inventory.has('emptybucket')) {
+                    this.sound.play('bucket');
                     inventory.remove(this, 'emptybucket');
                     inventory.add(this, 'fullbucket');
                 }
@@ -25,8 +29,11 @@ class CityScene_Future extends Phaser.Scene {
 
         this.ConstructionSign = new LeftSign(this, 40, 710);
         let thiss = this
+        this.Character = new Character(this, prevX, prevY, 'gravelwet');
+
+        Fade(this, "In")
+        
         if (inventory.has("coin_atlas")) {
-            this.Character = new Character(this, 850, 700);
             this.Character.setOnCollideWith(this.ConstructionSign, () => {
                 this.Character.WalkingSound.stop()
                 prevX = 1170
@@ -34,20 +41,26 @@ class CityScene_Future extends Phaser.Scene {
 
                 Fade(this, "Out");
                 setTimeout(function () {
-                    thiss.scene.start("DamnScene_Future");
+                    thiss.scene.start("DamnScene_Present");
                 }, 1000)
             })
-        } else {
-            this.Character = new Character(this, game.config.width / 10, game.config.height / 2 - tileSize * 2);
         }
-        Fade(this, "In")
-        
+
         setTimeout(function() {
             thiss.stateMachine.transition('idle');
         }, 800)
 
         this.timeTravel = () => {
-            console.log("cannot time travel here");
+            console.log("time travel time");
+            this.Character.WalkingSound.stop();
+            prevX = this.Character.x;
+            prevY = this.Character.y;
+
+            Fade(this, "Out");
+            let thiss = this
+            setTimeout(function () {
+                thiss.scene.start("CityScene_Present");
+            }, 1000)
         }
 
         this.InventoryGui = new InventoryGui(this);

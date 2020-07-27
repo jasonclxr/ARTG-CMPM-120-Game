@@ -1,3 +1,5 @@
+//this is just so I can create collision boundaries for players to walk on.
+
 class Line extends Phaser.Physics.Matter.Sprite {
     constructor(scene, x, y) {
         super(scene.matter.world, x, y, 'line');

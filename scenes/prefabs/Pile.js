@@ -1,3 +1,5 @@
+//An unused class I believe. Originally used in the earlier demos.
+
 class Pile extends Phaser.Physics.Matter.Image {
     constructor(scene, x, y) {
         super(scene.matter.world, x, y, 'pile');

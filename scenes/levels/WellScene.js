@@ -1,3 +1,6 @@
+//the well scene. your prime objective is to grab the coin, the rope and flip the coin to get
+//out of the well.
+
 class WellScene extends Phaser.Scene {
     constructor() {
         super('WellScene');
@@ -9,7 +12,7 @@ class WellScene extends Phaser.Scene {
         background.displayWidth = game.config.width
         this.matter.world.setBounds(400, 0, 400, game.config.height);
         this.add.text(game.config.width / 2, 30, 'Initial City Level: Well Scene', { font: '30px Arial', fill: '#FFFFFF' }).setOrigin(0.5);
-        this.Character = new Character(this, game.config.width / 2, game.config.height/10);
+        this.Character = new Character(this, game.config.width / 2, game.config.height / 10, 'gravelwet');
         Fade(this, "In")
         let thiss = this
         setTimeout(function() {
@@ -28,6 +31,8 @@ class WellScene extends Phaser.Scene {
         this.timeTravel = () => {
             console.log("teleport")
             this.Character.WalkingSound.stop();
+            prevX = 850
+            prevY = 700
             this.scene.start("CityScene_Future");
         }
         this.InventoryGui = new InventoryGui(this);

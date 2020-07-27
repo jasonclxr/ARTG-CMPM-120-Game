@@ -1,3 +1,5 @@
+//The class for the rope'd ladder. Now you can climb!
+
 class RopeLadder extends Phaser.Physics.Matter.Image {
     constructor(scene, x, y) {
         super(scene.matter.world, x, y, 'ladderRope');

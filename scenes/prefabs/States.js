@@ -1,3 +1,5 @@
+//The various states the player can be in.
+
 class TimeTravelState extends State {
     enter(scene, character) {
         character.setVelocityX(0);

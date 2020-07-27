@@ -1,3 +1,5 @@
+//To be used for unscrewing the crank in the future
+
 class Screwdriver extends Phaser.Physics.Matter.Image {
     constructor(scene, x, y) {
         super(scene.matter.world, x, y, 'screwdriver');
@@ -16,5 +18,13 @@ class Screwdriver extends Phaser.Physics.Matter.Image {
                 
             }
         })
+        
+        
+        this.Hover = new HoverOver(scene, this, 'screwdriverGlow')
+    }
+
+    destroy() {
+        this.Hover.destroy()
+        super.destroy()
     }
 }

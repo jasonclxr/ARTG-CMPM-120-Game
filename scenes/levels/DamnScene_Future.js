@@ -1,3 +1,6 @@
+//this here bad boy is the Damn Scene in the future time. Most of this is conditional checking
+//and setting up events for mouse and player interactions.
+
 class DamnScene_Future extends Phaser.Scene {
     constructor () {
         super('DamnScene_Future');
@@ -17,17 +20,23 @@ class DamnScene_Future extends Phaser.Scene {
         let ladder = new Ladder(this, 250, 175)
         let crank_1 = new Crank(this, 100, 500)
         let crank_2 = new Crank(this, 850, 100)
-        crank_1.setInteractive();
-        crank_2.setInteractive();
+
+        let crack1 = new Crack(this, 800, 200);
+        crack1.setScale(0.04)
+        crack1.visible = !pipe1
+        let crack2 = new Crack(this, 600, 200);
+        crack2.setScale(0.04)
+        crack2.visible = !pipe2
 
         if (!gotcrank) {
             let crank_3 = new Crank(this, 450, 300)
-            crank_3.setInteractive();
+            crank_3.setInteractive({ cursor: 'url(./assets/pngs/WellFull.png), pointer' });
             crank_3.on('pointerdown', () => {
                 if (Math.abs(crank_3.x - this.Character.x) <= obtainLength) {
                     if (inventory.has('screwdriver')) {
                         inventory.add(this, 'crankHandle');
                         gotcrank = true;
+                        this.sound.play('screwdriver');
                         inventory.remove(this, 'screwdriver')
                         crank_3.destroy();
                     }
@@ -37,12 +46,12 @@ class DamnScene_Future extends Phaser.Scene {
 
         let crack = new Crack(this, 600, 500);
         this.add.text(game.config.width / 2, 30, 'Dam Scene - Future', { font: '30px Arial', fill: '#FFFFFF' }).setOrigin(0.5);
-        this.Character = new Character(this, prevX, prevY);
+        this.Character = new Character(this, prevX, prevY, 'gravelwet');
         this.stateMachine.transition('idle')
 
-        let water4 = new DamWater(this, 630, 530);
+        let water4 = this.add.image(630, 530, 'water');
         water4.setScale(0.15)
-
+        
         let sapling = new Sapling(this, 1000, 560);
         if (treeBig == true) {
             let tree = new BigTree(this, sapling.x, sapling.y - 50)

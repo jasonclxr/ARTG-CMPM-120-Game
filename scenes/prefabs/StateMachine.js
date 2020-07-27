@@ -1,3 +1,5 @@
+//The state machine used in the game. Credit to Nathan (I believe)
+
 class StateMachine {
     constructor(initialState, possibleStates, stateArgs=[]) {
         this.initialState = initialState;

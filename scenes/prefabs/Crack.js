@@ -1,3 +1,5 @@
+//Crack class (haha). This is for creating the cracks on the game.
+
 class Crack extends Phaser.Physics.Matter.Image {
     constructor(scene, x, y) {
         super(scene.matter.world, x, y, 'bigCrack');
@@ -6,3 +8,5 @@ class Crack extends Phaser.Physics.Matter.Image {
         scene.add.existing(this);
     }
 }
+
+

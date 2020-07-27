@@ -1,3 +1,5 @@
+//"you need oil? story of my life" -Nathan Altice 2020
+
 class Oil extends Phaser.Physics.Matter.Image {
     constructor(scene, x, y) {
         super(scene.matter.world, x, y, 'oil');
@@ -13,5 +15,12 @@ class Oil extends Phaser.Physics.Matter.Image {
                 this.destroy();
             }
         })
+
+        this.Hover = new HoverOver(scene, this, 'oilGlow')
+    }
+
+    destroy() {
+        this.Hover.destroy()
+        super.destroy()
     }
 }

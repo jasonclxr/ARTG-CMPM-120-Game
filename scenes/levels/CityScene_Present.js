@@ -40,13 +40,14 @@ class CityScene_Present extends Phaser.Scene {
 
         this.timeTravel = () => {
             console.log("time travel time");
-            this.Character.WalkingSound.stop();
-            prevX = this.Character.x;
-            prevY = this.Character.y;
+            
 
             Fade(this, "Out");
             let thiss = this
             setTimeout(function () {
+                this.Character.WalkingSound.stop();
+                prevX = this.Character.x;
+                prevY = this.Character.y;
                 thiss.scene.start("CityScene_Future");
             }, 1000)
         }

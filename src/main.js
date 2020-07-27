@@ -30,6 +30,8 @@ var pipe3 = false;
 var gotcrank = false;
 var inventory = new Inventory();
 var treeBig = false;
+var roped = false;
+
 var gameConfig = {
     type: Phaser.AUTO,
     width: 1200,

@@ -29,7 +29,8 @@ class Menu extends Phaser.Scene {
             gotcrank = false;
             inventory = new Inventory();
             treeBig = false;
-
+            roped = false;
+            
             this.scene.start("CityScene_Present");
         }
 

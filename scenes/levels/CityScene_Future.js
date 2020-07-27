@@ -20,7 +20,6 @@ class CityScene_Future extends Phaser.Scene {
         this.fullWell.on('pointerdown', () => {
             if (Math.abs(this.fullWell.x - this.Character.x) <= obtainLength) {
                 if (inventory.has('emptybucket')) {
-                    this.sound.play('bucket');
                     inventory.remove(this, 'emptybucket');
                     inventory.add(this, 'fullbucket');
                 }
@@ -41,7 +40,7 @@ class CityScene_Future extends Phaser.Scene {
 
                 Fade(this, "Out");
                 setTimeout(function () {
-                    thiss.scene.start("DamnScene_Present");
+                    thiss.scene.start("DamnScene_Future");
                 }, 1000)
             })
         }
@@ -52,13 +51,14 @@ class CityScene_Future extends Phaser.Scene {
 
         this.timeTravel = () => {
             console.log("time travel time");
-            this.Character.WalkingSound.stop();
-            prevX = this.Character.x;
-            prevY = this.Character.y;
+            
 
             Fade(this, "Out");
             let thiss = this
             setTimeout(function () {
+                this.Character.WalkingSound.stop();
+                prevX = this.Character.x;
+                prevY = this.Character.y;
                 thiss.scene.start("CityScene_Present");
             }, 1000)
         }

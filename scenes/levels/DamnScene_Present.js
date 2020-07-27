@@ -18,25 +18,34 @@ class DamnScene_Present extends Phaser.Scene {
         let water3 = new DamWater(this, 585, 750);
         water3.visible = pipe3;
         let ladder = new Ladder(this, 250, 175)
-        
+
+        let thiss = this
+        function ropedLadder() {
+            let ropeLadder = new RopeLadder(thiss, ladder.x, ladder.y + 50)
+            ropeLadder.setInteractive({ cursor: 'url(./assets/pngs/WellFull.png), pointer' });
+            ropeLadder.on('pointerdown', () => {
+                console.log("climbing, insert animation later")
+                this.Character.setPosition(ropeLadder.x + 70, ropeLadder.y - 100);
+            })
+            roped = true;
+            ladder.destroy()
+        }
+
         ladder.setInteractive({ cursor: 'url(./assets/pngs/WellFull.png), pointer' });
         ladder.on('pointerdown', () => {
-            if (Math.abs(ladder.x - this.Character.x) <= obtainLength*2) {
+            if (Math.abs(ladder.x - thiss.Character.x) <= obtainLength*2) {
                 if (inventory.has('rope')) {
                     this.sound.play('rope');
-                    let ropeLadder = new RopeLadder(this, ladder.x, ladder.y + 50)
-                    ropeLadder.setInteractive({ cursor: 'url(./assets/pngs/WellFull.png), pointer' });
-                    ropeLadder.on('pointerdown', () => {
-                        console.log("climbing, insert animation later")
-                        this.Character.setPosition(ropeLadder.x + 70, ropeLadder.y-100);
-                    })
-                    ladder.destroy()
+                    ropedLadder()
                 } else {
                     console.log("you need rope!");
                 }
             }
         })
 
+        if (!roped) {
+            ropedLadder()
+        }
 
         if (!inventory.has("screwdriver")) {
             let screwdriver = new Screwdriver(this, 100, 362)
@@ -75,6 +84,7 @@ class DamnScene_Present extends Phaser.Scene {
         sapling.on('pointerdown', () => {
             if (Math.abs(sapling.x - this.Character.x) <= obtainLength && inventory.has("fullbucket")) {
                 console.log("Watered tree");
+                this.sound.play('bucket');
                 inventory.remove(this, 'fullbucket');
                 treeBig = true;
             }
@@ -82,13 +92,13 @@ class DamnScene_Present extends Phaser.Scene {
 
         this.timeTravel = () => {
             console.log("time travel time");
-            this.Character.WalkingSound.stop();
-            prevX = this.Character.x;
-            prevY = this.Character.y;
 
             Fade(this, "Out");
             let thiss = this
             setTimeout(function () {
+                prevX = this.Character.x;
+                prevY = this.Character.y;
+                this.Character.WalkingSound.stop();
                 thiss.scene.start("DamnScene_Future");
             }, 1000)
         }

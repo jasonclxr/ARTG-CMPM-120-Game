@@ -66,7 +66,7 @@ class Preload extends Phaser.Scene {
         this.load.atlas('char_atlas', './assets/sprites/char_sheet.png', './assets/sprites/char_sheet.json');
         console.log("Loading all assets, this may take about 10-15 seconds");
 
-        this.add.text(game.config.width / 2, game.config.height / 2, 'loading all assets, just give it a sec!', { font: '30px Arial', fill: '#FFFFFF' }).setOrigin(0.5);
+        this.add.text(game.config.width / 2, game.config.height / 2, 'loading all assets, please wait 10-15 seconds', { font: '30px Arial', fill: '#FFFFFF' }).setOrigin(0.5);
     }
 
     create() {

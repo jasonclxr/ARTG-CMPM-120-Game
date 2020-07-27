@@ -21,12 +21,15 @@ class DamnScene_Future extends Phaser.Scene {
         let crank_1 = new Crank(this, 100, 500)
         let crank_2 = new Crank(this, 850, 100)
 
-        let crack1 = new Crack(this, 800, 200);
-        crack1.setScale(0.04)
-        crack1.visible = !pipe1
-        let crack2 = new Crack(this, 600, 200);
-        crack2.setScale(0.04)
-        crack2.visible = !pipe2
+        if (!pipe1) {
+            let crack1 = new Crack(this, 800, 160);
+            crack1.setScale(0.04)
+        }
+
+        if (!pipe2) {
+            let crack2 = new Crack(this, 600, 200);
+            crack2.setScale(0.04)
+        }
 
         if (!gotcrank) {
             let crank_3 = new Crank(this, 450, 300)
@@ -62,13 +65,13 @@ class DamnScene_Future extends Phaser.Scene {
         }
         this.timeTravel = () => {
             console.log("time travel time");
-            this.Character.WalkingSound.stop();
-            prevX = this.Character.x;
-            prevY = this.Character.y;
 
             Fade(this, "Out");
             let thiss = this
             setTimeout(function () {
+                this.Character.WalkingSound.stop();
+                prevX = this.Character.x;
+                prevY = this.Character.y;
                 thiss.scene.start("DamnScene_Present");
             }, 1000)
             

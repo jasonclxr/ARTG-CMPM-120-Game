@@ -153,7 +153,7 @@ class DamnScene_Present extends Phaser.Scene {
         if (pipe1 && pipe2 && pipe3) {
             setTimeout(() => {
                 this.scene.start('EndCredits')
-            }, 1000)
+            }, 5000)
         }
     }
 }

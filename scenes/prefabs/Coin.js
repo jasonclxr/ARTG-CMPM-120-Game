@@ -12,8 +12,11 @@ class Coin extends Phaser.Physics.Matter.Sprite {
         this.on('pointerdown', () => {
             if (Math.abs(this.x - scene.Character.x) <= obtainLength) {
                 if (inventory.add(scene, "coin_atlas")) {
+                    scene.sound.play('coin_pickup');
                     this.destroy();
                 }
+            } else {
+                scene.sound.play('too_far_away')
             }
         })
     }

@@ -50,6 +50,20 @@ class Preload extends Phaser.Scene {
         this.load.image('crankHandleGlow', './assets/pngs/CrankGlow.png')
         this.load.image('bucketGlow', './assets/pngs/BucketGlow.png')
 
+        this.load.audio('empty_wheel_spot_interaction', './assets/sounds/empty_wheel_spot_interaction.mp3') //done
+        this.load.audio('final_damn_scene_vo', './assets/sounds/final_damn_scene_vo.mp3') 
+        this.load.audio('well_into_vo', './assets/sounds/well_intro_vo.mp3') //done
+        this.load.audio('into_1', './assets/sounds/into_1.mp3') //done
+        this.load.audio('wheel_3_turned', './assets/sounds/wheel_3_turned.mp3') //done
+        this.load.audio('Ladder_no_rope', './assets/sounds/Ladder_no_rope.mp3') //done
+        this.load.audio('Wheel_2_turned', './assets/sounds/wheel_2_turned.mp3') //done
+        this.load.audio('screwdriver_pickup', './assets/sounds/screwdriver_pickup.mp3') //done
+        this.load.audio('Tree_no_water', './assets/sounds/Tree_no_water.mp3') //done
+        this.load.audio('wheel_1_turned', './assets/sounds/wheel_1_turned.mp3') //done
+        this.load.audio('wheel_1_no_oil', './assets/sounds/wheel_1_no_oil.mp3') //done
+        this.load.audio('too_far_away', './assets/sounds/too_far_away.mp3') //done
+        this.load.audio('coin_pickup', './assets/sounds/coin_pickup.mp3') //done
+
         this.load.audio('gravelwet', './assets/sounds/gravel_steps_wet.mp3')
         this.load.audio('splash', './assets/sounds/sploosh.mp3')
         this.load.audio('bucket', './assets/sounds/buccet.mp3')
@@ -59,7 +73,6 @@ class Preload extends Phaser.Scene {
         this.load.audio('wheel', './assets/sounds/Coin_final.mp3')
         this.load.audio('rope', './assets/sounds/ROOOOOPE.mp3')
         this.load.audio('screwdriver', './assets/sounds/Screwdriver_final_sfx.mp3')
-
 
         this.load.atlas('platformer_atlas', './assets/sprites/kenny_sheet.png', './assets/sprites/kenny_sheet.json');
         this.load.atlas('coin_atlas', './assets/sprites/coin_sheet.png', './assets/sprites/coin_sheet.json');

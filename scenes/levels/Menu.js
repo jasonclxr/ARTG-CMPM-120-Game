@@ -11,7 +11,7 @@ class Menu extends Phaser.Scene {
         presentBackground.displayWidth = game.config.width
 
         this.MenuText = this.add.text(game.config.width / 2, game.config.height / 2, 'PRESS UP TO PLAY\n\nPRESS DOWN FOR CONTROLS', { align: 'center', font: '30px Arial', fill: '#FFFFFF' }).setOrigin(0.5);
-        this.ControlsText = this.add.text(game.config.width / 2, game.config.height / 2, 'CONTROLS\nLeft/Right Arrow for movement\nUp arrow for moving\nSpace for time travel\n\n\n\nPRESS DOWN TO RETURN TO MENU', { align: 'center', font: '30px Arial', fill: '#FFFFFF' }).setOrigin(0.5);
+        this.ControlsText = this.add.text(game.config.width / 2, game.config.height / 2, 'CONTROLS\nLeft/Right Arrow for movement\nUp arrow for moving\nSpace for time travel\nClick objects to add to inventory\n\n\nPRESS DOWN TO RETURN TO MENU', { align: 'center', font: '30px Arial', fill: '#FFFFFF' }).setOrigin(0.5);
         
         this.ControlsText.visible = false
     }
@@ -30,7 +30,9 @@ class Menu extends Phaser.Scene {
             inventory = new Inventory();
             treeBig = false;
             roped = false;
-            
+            setTimeout(() => {
+                this.sound.play('into_1');
+            }, 1000)
             this.scene.start("CityScene_Present");
         }
 

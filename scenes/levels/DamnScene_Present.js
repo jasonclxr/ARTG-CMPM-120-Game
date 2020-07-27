@@ -24,7 +24,6 @@ class DamnScene_Present extends Phaser.Scene {
             let ropeLadder = new RopeLadder(thiss, ladder.x, ladder.y + 50)
             ropeLadder.setInteractive({ cursor: 'url(./assets/pngs/WellFull.png), pointer' });
             ropeLadder.on('pointerdown', () => {
-                console.log("climbing, insert animation later")
                 this.Character.setPosition(ropeLadder.x + 70, ropeLadder.y - 100);
             })
             roped = true;
@@ -39,7 +38,10 @@ class DamnScene_Present extends Phaser.Scene {
                     ropedLadder()
                 } else {
                     console.log("you need rope!");
+                    this.sound.play('Ladder_no_rope')
                 }
+            } else {
+                this.sound.play('too_far_away')
             }
         })
 
@@ -66,11 +68,16 @@ class DamnScene_Present extends Phaser.Scene {
                 let crank_3 = new Crank(this, 450, 300)
                 crank_3.setInteractive({ cursor: 'url(./assets/pngs/WellFull.png), pointer' });
                 crank_3.on('pointerdown', () => {
-                    if (Math.abs(crank_3.x - this.Character.x) <= obtainLength) {
+                    if (Math.abs(crank_3.x - this.Character.x) <= obtainLength && !pipe2) {
                         water2.visible = true;
                         pipe2 = true;
+                        this.sound.play('wheel_2_turned');
+                    } else {
+                        this.sound.play('too_far_away')
                     }
                 })
+            } else {
+                this.sound.play('empty_wheel_spot_interaction')
             }
         })
 
@@ -87,6 +94,8 @@ class DamnScene_Present extends Phaser.Scene {
                 this.sound.play('bucket');
                 inventory.remove(this, 'fullbucket');
                 treeBig = true;
+            } else {
+                this.sound.play('Tree_no_water')
             }
         })
 
@@ -109,16 +118,23 @@ class DamnScene_Present extends Phaser.Scene {
                     water1.visible = true;
                     inventory.remove(this, "oil");
                     pipe1 = true;
+                    this.sound.play('wheel_1_turned');
                 } else {
                     console.log("you need oil!")
+                    this.sound.play('wheel_1_no_oil');
                 }
+            } else {
+                this.sound.play('too_far_away')
             }
         })
 
         crank_2.on('pointerdown', () => {
-            if (Math.abs(crank_2.x - this.Character.x) <= obtainLength) {
+            if (Math.abs(crank_2.x - this.Character.x) <= obtainLength && !pipe3) {
                 water3.visible = true;
                 pipe3 = true;
+                this.sound.play('wheel_3_turned');
+            } else {
+                this.sound.play('too_far_away')
             }
         })
 

@@ -18,6 +18,9 @@ class WellScene extends Phaser.Scene {
         setTimeout(function() {
             thiss.sound.play('splash');
             thiss.stateMachine.transition('idle');
+            
+            thiss.sound.play('well_into_vo')
+
         }, 1200)
 
         if (!inventory.has("coin_atlas")) {

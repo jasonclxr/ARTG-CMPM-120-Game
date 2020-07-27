@@ -12,10 +12,12 @@ class Screwdriver extends Phaser.Physics.Matter.Image {
         this.on('pointerdown', () => {
             if (Math.abs(this.x - scene.Character.x) <= obtainLength) {
                 console.log("Obtained screwdriver");
+                scene.sound.play('screwdriver_pickup')
                 if (inventory.add(scene, "screwdriver")) {
                     this.destroy();
                 }
-                
+            } else {
+                scene.sound.play('too_far_away')
             }
         })
         

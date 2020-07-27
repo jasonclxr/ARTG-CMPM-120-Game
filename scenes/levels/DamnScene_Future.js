@@ -43,6 +43,8 @@ class DamnScene_Future extends Phaser.Scene {
                         inventory.remove(this, 'screwdriver')
                         crank_3.destroy();
                     }
+                } else {
+                    this.sound.play('too_far_away')
                 }
             })
         }

@@ -23,6 +23,8 @@ class CityScene_Future extends Phaser.Scene {
                     inventory.remove(this, 'emptybucket');
                     inventory.add(this, 'fullbucket');
                 }
+            } else {
+                this.sound.play('too_far_away')
             }
         })
 

@@ -114,7 +114,7 @@ class Preload extends Phaser.Scene {
         });
         console.log("Assets all loaded up!");
 
-        this.scene.start("EndCredits");
+        this.scene.start("Menu");
     }
 
 }

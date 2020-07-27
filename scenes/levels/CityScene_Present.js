@@ -46,8 +46,8 @@ class CityScene_Present extends Phaser.Scene {
             let thiss = this
             setTimeout(function () {
                 this.Character.WalkingSound.stop();
-                prevX = this.Character.x;
-                prevY = this.Character.y;
+                prevX = thiss.Character.x;
+                prevY = thiss.Character.y;
                 thiss.scene.start("CityScene_Future");
             }, 1000)
         }

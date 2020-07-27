@@ -24,7 +24,7 @@ class DamnScene_Present extends Phaser.Scene {
             let ropeLadder = new RopeLadder(thiss, ladder.x, ladder.y + 50)
             ropeLadder.setInteractive({ cursor: 'url(./assets/pngs/WellFull.png), pointer' });
             ropeLadder.on('pointerdown', () => {
-                this.Character.setPosition(ropeLadder.x + 70, ropeLadder.y - 100);
+                thiss.Character.setPosition(ropeLadder.x + 70, ropeLadder.y - 100);
             })
             roped = true;
             ladder.destroy()
@@ -105,9 +105,9 @@ class DamnScene_Present extends Phaser.Scene {
             Fade(this, "Out");
             let thiss = this
             setTimeout(function () {
-                prevX = this.Character.x;
-                prevY = this.Character.y;
-                this.Character.WalkingSound.stop();
+                prevX = thiss.Character.x;
+                prevY = thiss.Character.y;
+                thiss.Character.WalkingSound.stop();
                 thiss.scene.start("DamnScene_Future");
             }, 1000)
         }

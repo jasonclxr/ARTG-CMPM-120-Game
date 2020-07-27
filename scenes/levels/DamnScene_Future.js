@@ -71,9 +71,9 @@ class DamnScene_Future extends Phaser.Scene {
             Fade(this, "Out");
             let thiss = this
             setTimeout(function () {
-                this.Character.WalkingSound.stop();
-                prevX = this.Character.x;
-                prevY = this.Character.y;
+                thiss.Character.WalkingSound.stop();
+                prevX = thiss.Character.x;
+                prevY = thiss.Character.y;
                 thiss.scene.start("DamnScene_Present");
             }, 1000)
             

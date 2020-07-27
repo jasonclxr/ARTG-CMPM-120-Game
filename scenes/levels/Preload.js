@@ -11,7 +11,7 @@ class Preload extends Phaser.Scene {
         this.load.image('fullwell', './assets/pngs/WellFull.png')
         this.load.image('wellbackground', './assets/pngs/WellScene.png')
         this.load.image('endCredit1', './assets/pngs/Completed.png')
-        this.load.image('menu', './assets/pngs/Menu.png')
+        this.load.image('menu', './assets/pngs/menu.png')
         this.load.image('endCredit2', './assets/pngs/credits.png')
 
         this.load.image('rope', './assets/pngs/rope.png')
